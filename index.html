@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codeward Security — Where Code Meets Conviction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14141a;
+    --carbon:#1f1f26;
+    --paper:#f7f6f3;
+    --paper-dim:#eeece7;
+    --red:#a6192e;
+    --red-bright:#c5273e;
+    --silver:#9a9a9e;
+    --silver-bright:#c7c7cb;
+    --muted:#5b5b60;
+    --ink-line:#34343d;
+    --font-display:'Fraunces', Georgia, serif;
+    --font-mono:'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    --font-body:'Public Sans', -apple-system, sans-serif;
+    --max:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    background:var(--paper);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
+  @media (max-width:640px){
+    .wrap{padding:0 20px;}
+    .term-body{ font-size:11px; }
+    .term-file{ font-size:11px; }
+  }
+
+  /* ---------- focus ---------- */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--red-bright);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,20,26,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--ink-line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    font-family:var(--font-mono);
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:0.12em;
+    color:#fff;
+    text-decoration:none;
+    display:flex; align-items:center; gap:8px;
+  }
+  .brand-mark{
+    width:9px;height:9px;background:var(--red);
+    display:inline-block;
+  }
+  .nav-links{
+    display:flex; align-items:center; gap:28px;
+    list-style:none; margin:0; padding:0;
+  }
+  .nav-links a{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:0.04em;
+    color:var(--silver-bright);
+    text-decoration:none;
+    transition:color .15s ease;
+  }
+  .nav-links a:hover{color:#fff;}
+  .nav-links{display:none;}
+  @media (min-width:860px){ .nav-links{display:flex;} }
+
+  .lang-toggle{
+    display:flex; align-items:center; gap:2px;
+    font-family:var(--font-mono);
+    font-size:12px; font-weight:600;
+    border:1px solid var(--ink-line);
+    border-radius:4px; overflow:hidden;
+  }
+  .lang-toggle button{
+    background:transparent; border:none; cursor:pointer;
+    color:var(--silver-bright);
+    padding:7px 12px;
+    font-family:var(--font-mono);
+    font-size:12px; font-weight:600;
+    letter-spacing:0.04em;
+    transition:background .15s ease, color .15s ease;
+  }
+  .lang-toggle button.active{
+    background:var(--red); color:#fff;
+  }
+  .lang-toggle button:not(.active):hover{ color:#fff; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:var(--ink);
+    color:#fff;
+    padding:88px 0 96px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--ink-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--ink-line) 1px, transparent 1px);
+    background-size:64px 64px;
+    opacity:0.18;
+    mask-image:linear-gradient(to bottom, transparent, black 18%, black 70%, transparent);
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative;
+    display:grid; grid-template-columns:1fr; gap:48px;
+    align-items:center;
+    min-width:0;
+  }
+  .hero-grid > div{ min-width:0; }
+  @media (min-width:920px){
+    .hero-grid{ grid-template-columns:1.05fr 1fr; gap:56px; }
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12.5px; font-weight:600;
+    letter-spacing:0.14em;
+    color:var(--red-bright);
+    text-transform:uppercase;
+    margin:0 0 22px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:""; width:18px; height:1px; background:var(--red-bright);
+  }
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(40px, 5.4vw, 66px);
+    line-height:1.03;
+    letter-spacing:-0.01em;
+    margin:0 0 26px;
+  }
+  .hero h1 em{
+    font-style:italic; font-weight:500; color:var(--silver-bright);
+  }
+  .hero p.lede{
+    font-size:17px; line-height:1.65;
+    color:#cfcfd4;
+    max-width:46ch;
+    margin:0 0 36px;
+  }
+  .cta-row{ display:flex; flex-wrap:wrap; gap:14px; }
+  .btn{
+    font-family:var(--font-mono);
+    font-size:13px; font-weight:600; letter-spacing:0.03em;
+    padding:14px 22px;
+    border-radius:3px;
+    text-decoration:none;
+    display:inline-block;
+    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+    border:1px solid transparent;
+  }
+  .btn-primary{ background:var(--red); color:#fff; }
+  .btn-primary:hover{ background:var(--red-bright); transform:translateY(-1px); }
+  .btn-ghost{ border-color:var(--ink-line); color:#fff; }
+  .btn-ghost:hover{ border-color:var(--silver-bright); transform:translateY(-1px); }
+
+  /* ---------- terminal ---------- */
+  .terminal{
+    background:var(--carbon);
+    border:1px solid var(--ink-line);
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+    min-width:0;
+  }
+  .term-bar{
+    display:flex; align-items:center; gap:8px;
+    padding:11px 14px;
+    background:#1a1a21;
+    border-bottom:1px solid var(--ink-line);
+  }
+  .term-dot{ width:9px; height:9px; border-radius:50%; background:#3a3a42; }
+  .term-file{
+    font-family:var(--font-mono); font-size:12px; color:var(--silver);
+    margin-left:6px;
+  }
+  .term-body{
+    font-family:var(--font-mono);
+    font-size:13px; line-height:1.95;
+    padding:20px 22px 22px;
+    overflow-x:auto;
+  }
+  .term-line{ display:flex; gap:14px; white-space:pre; }
+  .term-no{ color:#4a4a52; width:18px; text-align:right; flex-shrink:0; user-select:none; }
+  .term-code{ color:#c9c9ce; }
+  .term-line.minus .term-code{ color:#e2a4ad; background:rgba(166,25,46,0.16); padding:1px 4px; border-radius:2px; }
+  .term-line.minus .term-no{ color:var(--red-bright); }
+  .term-line.minus .sigil{ color:var(--red-bright); margin-right:2px; }
+  .term-line.plus .term-code{ color:#e7e7ea; background:rgba(154,154,158,0.14); padding:1px 4px; border-radius:2px; }
+  .term-line.plus .term-no{ color:var(--silver-bright); }
+  .term-line.plus .sigil{ color:var(--silver-bright); margin-right:2px; }
+  .cursor{
+    display:inline-block; width:7px; height:14px;
+    background:var(--silver-bright);
+    margin-left:2px;
+    animation:blink 1s steps(1) infinite;
+    vertical-align:-2px;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .term-caption{
+    font-family:var(--font-mono); font-size:11.5px;
+    color:var(--silver);
+    padding:13px 22px 16px;
+    border-top:1px solid var(--ink-line);
+    letter-spacing:0.02em;
+  }
+
+  /* ---------- diff pair (signature motif, reused) ---------- */
+  .diff-pair{
+    font-family:var(--font-mono); font-size:12px; line-height:1.85;
+  }
+  .diff-pair .d-minus{ color:var(--red); }
+  .diff-pair .d-plus{ color:var(--muted); }
+  .diff-pair .d-minus .sigil, .diff-pair .d-plus .sigil{ margin-right:6px; font-weight:700; }
+
+  /* ---------- section scaffolding ---------- */
+  section{ padding:96px 0; }
+  .section-head{ max-width:640px; margin:0 0 52px; }
+  .section-eyebrow{
+    font-family:var(--font-mono); font-size:12px; font-weight:600;
+    letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--red); margin:0 0 14px;
+  }
+  h2{
+    font-family:var(--font-display); font-weight:600;
+    font-size:clamp(28px, 3.2vw, 38px);
+    line-height:1.12; margin:0 0 14px; letter-spacing:-0.01em;
+  }
+  .section-sub{ font-size:16px; line-height:1.6; color:var(--muted); margin:0; }
+  .on-dark .section-sub{ color:#b9b9bf; }
+  .on-dark h2{ color:#fff; }
+  .on-dark .section-eyebrow{ color:var(--red-bright); }
+
+  /* ---------- pillars ---------- */
+  .pillars{ background:var(--paper); }
+  .pillar-grid{
+    display:grid; grid-template-columns:1fr; gap:22px;
+  }
+  @media (min-width:760px){ .pillar-grid{ grid-template-columns:repeat(3,1fr); } }
+  .pillar-card{
+    background:#fff;
+    border:1px solid #e3e1da;
+    border-radius:8px;
+    padding:28px 26px 30px;
+  }
+  .pillar-card .diff-pair{ margin-bottom:18px; }
+  .pillar-card h3{
+    font-family:var(--font-display); font-weight:600; font-size:20px;
+    margin:0 0 10px; line-height:1.25;
+  }
+  .pillar-card p{ font-size:14.5px; line-height:1.6; color:var(--muted); margin:0; }
+
+  /* ---------- services ---------- */
+  .services{ background:var(--ink); }
+  .service-grid{
+    display:grid; grid-template-columns:1fr; gap:1px;
+    background:var(--ink-line);
+    border:1px solid var(--ink-line);
+    border-radius:8px;
+    overflow:hidden;
+  }
+  @media (min-width:680px){ .service-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (min-width:1020px){ .service-grid{ grid-template-columns:repeat(3,1fr); } }
+  .service-card{
+    background:var(--carbon);
+    padding:24px 24px 26px;
+  }
+  .service-tag{
+    font-family:var(--font-mono); font-size:10.5px; color:var(--red-bright);
+    letter-spacing:0.08em; margin:0 0 12px;
+  }
+  .service-card h3{
+    font-family:var(--font-display); font-weight:600; font-size:17px;
+    color:#fff; margin:0 0 9px; line-height:1.3;
+  }
+  .service-card p{ font-size:13.5px; line-height:1.55; color:#aeaeb4; margin:0; }
+  .service-card.flagship{ background:#241317; }
+  .service-card.flagship .service-tag{ color:var(--silver-bright); }
+
+  /* ---------- regions ---------- */
+  .regions{ background:var(--paper); }
+  .region-grid{
+    display:grid; grid-template-columns:1fr; gap:1px;
+    background:#e3e1da; border:1px solid #e3e1da; border-radius:8px; overflow:hidden;
+  }
+  @media (min-width:760px){ .region-grid{ grid-template-columns:repeat(3,1fr); } }
+  .region-card{ background:#fff; padding:28px 24px; }
+  .region-card h3{
+    font-family:var(--font-display); font-weight:600; font-size:19px;
+    margin:0 0 12px;
+  }
+  .region-card p{ font-size:14px; line-height:1.6; color:var(--muted); margin:0 0 16px; }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{
+    font-family:var(--font-mono); font-size:11px; font-weight:600;
+    color:var(--red); background:#fbe9ec;
+    border-radius:3px; padding:4px 9px; letter-spacing:0.02em;
+  }
+
+  /* ---------- callout ---------- */
+  .callout{ background:var(--ink); padding-top:0; padding-bottom:96px; }
+  .callout-box{
+    border-left:3px solid var(--red);
+    padding:8px 0 8px 28px;
+  }
+  .callout-box p{
+    font-family:var(--font-display); font-style:italic; font-weight:500;
+    font-size:clamp(20px, 2.6vw, 28px);
+    line-height:1.45; color:#f1f1f3; margin:0;
+  }
+  .callout-attr{
+    font-family:var(--font-mono); font-size:12px; color:var(--silver);
+    margin-top:18px; letter-spacing:0.02em;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    background:#0e0e12; color:#fff; padding:72px 0 36px;
+  }
+  .footer-top{
+    display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between;
+    gap:28px; padding-bottom:44px; border-bottom:1px solid var(--ink-line);
+  }
+  .footer-top h2{ color:#fff; max-width:520px; margin-bottom:0; }
+  .footer-bottom{
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px;
+    padding-top:28px;
+    font-family:var(--font-mono); font-size:12px; color:var(--silver);
+  }
+  .footer-tagline{ color:var(--silver-bright); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .cursor{ animation:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand"><span class="brand-mark"></span>CODEWARD SECURITY</a>
+    <ul class="nav-links">
+      <li><a href="#services" data-i18n="nav.services">Services</a></li>
+      <li><a href="#regions" data-i18n="nav.regions">Regions</a></li>
+      <li><a href="#why" data-i18n="nav.why">Why Us</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="fr">FR</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow" data-i18n="hero.eyebrow">Security built by developers, for developers</p>
+      <h1 data-i18n-html="hero.h1">Where Code<br>Meets <em>Conviction.</em></h1>
+      <p class="lede" data-i18n="hero.lede">We don't hand back a findings PDF. We sit inside the pull request, the pipeline, and the architecture review — fixing security defects at the source for fintech platforms, neo-banks, and the banks and regulators that oversee them.</p>
+      <div class="cta-row">
+        <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">Book a Pilot Review</a>
+        <a href="#services" class="btn btn-ghost" data-i18n="hero.cta2">See the Services</a>
+      </div>
+    </div>
+    <div class="reveal" id="terminal-wrap">
+      <div class="terminal">
+        <div class="term-bar">
+          <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+          <span class="term-file">auth.py — pull request #482</span>
+        </div>
+        <div class="term-body">
+          <div class="term-line"><span class="term-no">11</span><span class="term-code">  def charge(customer, amount):</span></div>
+          <div class="term-line minus"><span class="term-no">12</span><span class="term-code"><span class="sigil">−</span>    api_key = "sk_live_4f9a8e2c..."&nbsp; <span data-i18n="hero.term.comment1"># hardcoded credential</span></span></div>
+          <div class="term-line plus"><span class="term-no">12</span><span class="term-code"><span class="sigil">+</span>    api_key = os.environ["STRIPE_API_KEY"]</span></div>
+          <div class="term-line"><span class="term-no">13</span><span class="term-code">  &nbsp;&nbsp;ledger.post(customer, amount)<span class="cursor"></span></span></div>
+        </div>
+        <div class="term-caption" data-i18n="hero.term.caption">A real fix, not just a finding.</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="pillars" id="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="section-eyebrow" data-i18n="pillars.eyebrow">Why Codeward</p>
+      <h2 data-i18n="pillars.h2">Three pillars, one engineering team</h2>
+      <p class="section-sub" data-i18n="pillars.sub">Differentiation that audit-only consultancies can't replicate — because they were never built by practitioners shipping production code under live PCI-DSS and SOC 2 pressure.</p>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar-card reveal">
+        <div class="diff-pair">
+          <div class="d-minus"><span class="sigil">−</span><span data-i18n="pillars.p1.minus">manual review, once a quarter</span></div>
+          <div class="d-plus"><span class="sigil">+</span><span data-i18n="pillars.p1.plus">AI-assisted, every commit</span></div>
+        </div>
+        <h3 data-i18n="pillars.p1.title">AI-Assisted Secure Code Review</h3>
+        <p data-i18n="pillars.p1.body">Human-led, LLM-assisted triage tuned to transaction logic and ledger integrity. Every finding ships with a proposed fix, not a CVE number.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <div class="diff-pair">
+          <div class="d-minus"><span class="sigil">−</span><span data-i18n="pillars.p2.minus">security blocks the release</span></div>
+          <div class="d-plus"><span class="sigil">+</span><span data-i18n="pillars.p2.plus">security ships with the release</span></div>
+        </div>
+        <h3 data-i18n="pillars.p2.title">DevSecOps Pipeline Integration</h3>
+        <p data-i18n="pillars.p2.body">Security gates live inside GitHub Actions, GitLab CI, and Jenkins — no separate portal developers have to context-switch into.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <div class="diff-pair">
+          <div class="d-minus"><span class="sigil">−</span><span data-i18n="pillars.p3.minus">generic vulnerability scans</span></div>
+          <div class="d-plus"><span class="sigil">+</span><span data-i18n="pillars.p3.plus">built for payment-rail logic</span></div>
+        </div>
+        <h3 data-i18n="pillars.p3.title">API & Transaction-Layer Security</h3>
+        <p data-i18n="pillars.p3.body">Deep expertise in REST, GraphQL, and ISO 20022/SWIFT messaging — built to catch account takeover and ledger manipulation before they happen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services on-dark" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="section-eyebrow" data-i18n="services.eyebrow">Full Portfolio</p>
+      <h2 data-i18n="services.h2">Security, organized around how software actually gets built</h2>
+      <p class="section-sub" data-i18n="services.sub">Seven service lines spanning the codebase, the pipeline, the transaction layer, and — for clients with branches, data centers, and ATM networks — the physical layer too.</p>
+    </div>
+    <div class="service-grid reveal">
+      <div class="service-card">
+        <p class="service-tag" data-i18n="services.s1.tag">2.1 — AppSec</p>
+        <h3 data-i18n="services.s1.title">Application Security & Code Audit</h3>
+        <p data-i18n="services.s1.body">Manual and automated source review across the full SDLC, from SAST to secrets scanning.</p>
+      </div>
+      <div class="service-card">
+        <p class="service-tag" data-i18n="services.s2.tag">2.2 — DevSecOps</p>
+        <h3 data-i18n="services.s2.title">DevSecOps-as-a-Service</h3>
+        <p data-i18n="services.s2.body">Security embedded as code directly inside your existing CI/CD pipelines.</p>
+      </div>
+      <div class="service-card">
+        <p class="service-tag" data-i18n="services.s3.tag">2.3 — Cloud & API</p>
+        <h3 data-i18n="services.s3.title">API & Cloud-Native Security</h3>
+        <p data-i18n="services.s3.body">Hardening for Kubernetes, microservices, and cloud-native fintech infrastructure.</p>
+      </div>
+      <div class="service-card">
+        <p class="service-tag" data-i18n="services.s4.tag">2.4 — Offensive Security</p>
+        <h3 data-i18n="services.s4.title">Red Teaming</h3>
+        <p data-i18n="services.s4.body">Adversarial testing built for payment systems and DeFi smart contracts.</p>
+      </div>
+      <div class="service-card">
+        <p class="service-tag" data-i18n="services.s5.tag">2.5 — GRC</p>
+        <h3 data-i18n="services.s5.title">Fintech GRC & Regulatory Compliance</h3>
+        <p data-i18n="services.s5.body">PCI-DSS, SOC 2, DORA, NIS2, and African data-protection frameworks.</p>
+      </div>
+      <div class="service-card">
+        <p class="service-tag" data-i18n="services.s6.tag">2.6 — vSOC</p>
+        <h3 data-i18n="services.s6.title">Continuous Threat Monitoring</h3>
+        <p data-i18n="services.s6.body">24/7 transaction-layer monitoring tuned to real fraud patterns.</p>
+      </div>
+      <div class="service-card flagship">
+        <p class="service-tag" data-i18n="services.s7.tag">2.7 — Physical Security</p>
+        <h3 data-i18n="services.s7.title">Equipment Sales, Installation & Managed Services</h3>
+        <p data-i18n="services.s7.body">IP video, access control, and alarm systems for branches and data centers — sold, installed, and kept patched, with firmware treated like any other endpoint.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="regions" id="regions">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="section-eyebrow" data-i18n="regions.eyebrow">Global Footprint</p>
+      <h2 data-i18n="regions.h2">Operating where modern finance is being built</h2>
+      <p class="section-sub" data-i18n="regions.sub">North America-anchored, with regulatory-fluent practices already standing in Europe and Africa.</p>
+    </div>
+    <div class="region-grid reveal">
+      <div class="region-card">
+        <h3 data-i18n="regions.na.title">North America</h3>
+        <p data-i18n="regions.na.body">Launch market and engineering base, anchored in card-network and federal financial-data standards.</p>
+        <div class="chip-row">
+          <span class="chip">PCI-DSS</span><span class="chip">SOC 2</span><span class="chip">GLBA</span>
+        </div>
+      </div>
+      <div class="region-card">
+        <h3 data-i18n="regions.eu.title">Europe</h3>
+        <p data-i18n="regions.eu.body">A regulatory-depth entry wedge, ready for the world's most mature financial-cyber regime.</p>
+        <div class="chip-row">
+          <span class="chip">DORA</span><span class="chip">NIS2</span><span class="chip">GDPR</span><span class="chip">PSD2/PSD3</span>
+        </div>
+      </div>
+      <div class="region-card">
+        <h3 data-i18n="regions.af.title">Africa</h3>
+        <p data-i18n="regions.af.body">Mobile-money and USSD-channel security for the continent's fastest-growing fintech markets.</p>
+        <div class="chip-row">
+          <span class="chip">NDPA</span><span class="chip">POPIA</span><span class="chip">Kenya DPA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="callout on-dark">
+  <div class="wrap">
+    <div class="callout-box reveal">
+      <p data-i18n="callout.quote">Tooling vendors sell software your engineers still have to fix. Auditors disappear between assessments. We stay embedded — and we ship the patch.</p>
+      <p class="callout-attr" data-i18n="callout.attr">— Why fintech & banking teams choose Codeward over a platform, a Big 4 audit, or a guard company alone</p>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-top">
+      <h2 data-i18n="footer.cta">Ready to ship secure, not just compliant?</h2>
+      <a href="mailto:hello@codewardsecurity.com" class="btn btn-primary" data-i18n="footer.btn">Talk to the Team</a>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-tagline" data-i18n="footer.tagline">Codeward Security — Where Code Meets Conviction.</span>
+      <span data-i18n="footer.bottom">© 2026 Codeward Security. Operating across North America, Europe &amp; Africa.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const COPY = {
+  en: {
+    "nav.services":"Services","nav.regions":"Regions","nav.why":"Why Us","nav.contact":"Contact",
+    "hero.eyebrow":"Security built by developers, for developers",
+    "hero.h1":"Where Code<br>Meets <em>Conviction.</em>",
+    "hero.lede":"We don't hand back a findings PDF. We sit inside the pull request, the pipeline, and the architecture review — fixing security defects at the source for fintech platforms, neo-banks, and the banks and regulators that oversee them.",
+    "hero.cta1":"Book a Pilot Review","hero.cta2":"See the Services",
+    "hero.term.comment1":"# hardcoded credential",
+    "hero.term.caption":"A real fix, not just a finding.",
+    "pillars.eyebrow":"Why Codeward","pillars.h2":"Three pillars, one engineering team",
+    "pillars.sub":"Differentiation that audit-only consultancies can't replicate — because they were never built by practitioners shipping production code under live PCI-DSS and SOC 2 pressure.",
+    "pillars.p1.minus":"manual review, once a quarter","pillars.p1.plus":"AI-assisted, every commit",
+    "pillars.p1.title":"AI-Assisted Secure Code Review",
+    "pillars.p1.body":"Human-led, LLM-assisted triage tuned to transaction logic and ledger integrity. Every finding ships with a proposed fix, not a CVE number.",
+    "pillars.p2.minus":"security blocks the release","pillars.p2.plus":"security ships with the release",
+    "pillars.p2.title":"DevSecOps Pipeline Integration",
+    "pillars.p2.body":"Security gates live inside GitHub Actions, GitLab CI, and Jenkins — no separate portal developers have to context-switch into.",
+    "pillars.p3.minus":"generic vulnerability scans","pillars.p3.plus":"built for payment-rail logic",
+    "pillars.p3.title":"API & Transaction-Layer Security",
+    "pillars.p3.body":"Deep expertise in REST, GraphQL, and ISO 20022/SWIFT messaging — built to catch account takeover and ledger manipulation before they happen.",
+    "services.eyebrow":"Full Portfolio","services.h2":"Security, organized around how software actually gets built",
+    "services.sub":"Seven service lines spanning the codebase, the pipeline, the transaction layer, and — for clients with branches, data centers, and ATM networks — the physical layer too.",
+    "services.s1.tag":"2.1 — AppSec","services.s1.title":"Application Security & Code Audit","services.s1.body":"Manual and automated source review across the full SDLC, from SAST to secrets scanning.",
+    "services.s2.tag":"2.2 — DevSecOps","services.s2.title":"DevSecOps-as-a-Service","services.s2.body":"Security embedded as code directly inside your existing CI/CD pipelines.",
+    "services.s3.tag":"2.3 — Cloud & API","services.s3.title":"API & Cloud-Native Security","services.s3.body":"Hardening for Kubernetes, microservices, and cloud-native fintech infrastructure.",
+    "services.s4.tag":"2.4 — Offensive Security","services.s4.title":"Red Teaming","services.s4.body":"Adversarial testing built for payment systems and DeFi smart contracts.",
+    "services.s5.tag":"2.5 — GRC","services.s5.title":"Fintech GRC & Regulatory Compliance","services.s5.body":"PCI-DSS, SOC 2, DORA, NIS2, and African data-protection frameworks.",
+    "services.s6.tag":"2.6 — vSOC","services.s6.title":"Continuous Threat Monitoring","services.s6.body":"24/7 transaction-layer monitoring tuned to real fraud patterns.",
+    "services.s7.tag":"2.7 — Physical Security","services.s7.title":"Equipment Sales, Installation & Managed Services","services.s7.body":"IP video, access control, and alarm systems for branches and data centers — sold, installed, and kept patched, with firmware treated like any other endpoint.",
+    "regions.eyebrow":"Global Footprint","regions.h2":"Operating where modern finance is being built",
+    "regions.sub":"North America-anchored, with regulatory-fluent practices already standing in Europe and Africa.",
+    "regions.na.title":"North America","regions.na.body":"Launch market and engineering base, anchored in card-network and federal financial-data standards.",
+    "regions.eu.title":"Europe","regions.eu.body":"A regulatory-depth entry wedge, ready for the world's most mature financial-cyber regime.",
+    "regions.af.title":"Africa","regions.af.body":"Mobile-money and USSD-channel security for the continent's fastest-growing fintech markets.",
+    "callout.quote":"Tooling vendors sell software your engineers still have to fix. Auditors disappear between assessments. We stay embedded — and we ship the patch.",
+    "callout.attr":"— Why fintech & banking teams choose Codeward over a platform, a Big 4 audit, or a guard company alone",
+    "footer.cta":"Ready to ship secure, not just compliant?","footer.btn":"Talk to the Team",
+    "footer.tagline":"Codeward Security — Where Code Meets Conviction.",
+    "footer.bottom":"© 2026 Codeward Security. Operating across North America, Europe & Africa."
+  },
+  fr: {
+    "nav.services":"Services","nav.regions":"Régions","nav.why":"Pourquoi nous","nav.contact":"Contact",
+    "hero.eyebrow":"Une sécurité conçue par des développeurs, pour des développeurs",
+    "hero.h1":"Où le code<br>rencontre la <em>conviction.</em>",
+    "hero.lede":"Nous ne remettons pas un simple rapport de constats. Nous intervenons directement dans la pull request, le pipeline et la revue d'architecture — en corrigeant les failles à la source pour les plateformes fintech, les néo-banques, ainsi que les banques et régulateurs qui les supervisent.",
+    "hero.cta1":"Réserver un audit pilote","hero.cta2":"Voir les services",
+    "hero.term.comment1":"# identifiant codé en dur",
+    "hero.term.caption":"Un vrai correctif, pas seulement un constat.",
+    "pillars.eyebrow":"Pourquoi Codeward","pillars.h2":"Trois piliers, une seule équipe d'ingénierie",
+    "pillars.sub":"Une différenciation que les cabinets d'audit seul ne peuvent reproduire — car ils n'ont jamais été bâtis par des praticiens livrant du code en production sous la pression réelle de PCI-DSS et SOC 2.",
+    "pillars.p1.minus":"revue manuelle, une fois par trimestre","pillars.p1.plus":"assistée par IA, à chaque commit",
+    "pillars.p1.title":"Revue de code sécurisée assistée par IA",
+    "pillars.p1.body":"Un triage piloté par des humains et assisté par IA, calibré sur la logique transactionnelle et l'intégrité des grands livres. Chaque constat est livré avec un correctif proposé, pas un simple numéro de CVE.",
+    "pillars.p2.minus":"la sécurité bloque la mise en production","pillars.p2.plus":"la sécurité accompagne la mise en production",
+    "pillars.p2.title":"Intégration DevSecOps au pipeline",
+    "pillars.p2.body":"Les contrôles de sécurité vivent directement dans GitHub Actions, GitLab CI et Jenkins — sans portail séparé qui détourne les développeurs de leur flux de travail.",
+    "pillars.p3.minus":"des scans de vulnérabilités génériques","pillars.p3.plus":"conçus pour la logique des rails de paiement",
+    "pillars.p3.title":"Sécurité des API et de la couche transactionnelle",
+    "pillars.p3.body":"Une expertise approfondie en REST, GraphQL et messagerie ISO 20022/SWIFT — conçue pour détecter la prise de contrôle de comptes et la manipulation de grand livre avant qu'elles ne se produisent.",
+    "services.eyebrow":"Portefeuille complet","services.h2":"Une sécurité organisée autour de la manière dont le logiciel est réellement construit",
+    "services.sub":"Sept lignes de service couvrant le code, le pipeline, la couche transactionnelle et, pour les clients disposant d'agences, de centres de données et de distributeurs automatiques, la couche physique également.",
+    "services.s1.tag":"2.1 — AppSec","services.s1.title":"Sécurité applicative et audit de code","services.s1.body":"Revue de code manuelle et automatisée sur l'ensemble du cycle de développement, du SAST à la détection de secrets.",
+    "services.s2.tag":"2.2 — DevSecOps","services.s2.title":"DevSecOps-as-a-Service","services.s2.body":"Sécurité intégrée comme du code, directement dans votre CI/CD existant.",
+    "services.s3.tag":"2.3 — Cloud et API","services.s3.title":"Sécurité des API et du cloud natif","services.s3.body":"Durcissement pour Kubernetes, microservices et infrastructures cloud natives fintech.",
+    "services.s4.tag":"2.4 — Sécurité offensive","services.s4.title":"Red Teaming","services.s4.body":"Tests adverses conçus pour les systèmes de paiement et les smart contracts DeFi.",
+    "services.s5.tag":"2.5 — GRC","services.s5.title":"GRC fintech et conformité réglementaire","services.s5.body":"PCI-DSS, SOC 2, DORA, NIS2 et cadres africains de protection des données.",
+    "services.s6.tag":"2.6 — vSOC","services.s6.title":"Surveillance continue des menaces","services.s6.body":"Surveillance 24 h/24 et 7 j/7 de la couche transactionnelle, calibrée sur des schémas de fraude réels.",
+    "services.s7.tag":"2.7 — Sécurité physique","services.s7.title":"Vente, installation et services gérés d'équipements","services.s7.body":"Vidéosurveillance IP, contrôle d'accès et alarmes pour agences et centres de données — vendus, installés et maintenus à jour, le firmware étant traité comme tout autre point de terminaison.",
+    "regions.eyebrow":"Présence mondiale","regions.h2":"Présents là où la finance moderne se construit",
+    "regions.sub":"Ancrés en Amérique du Nord, avec des pratiques déjà établies et maîtrisant les réglementations en Europe et en Afrique.",
+    "regions.na.title":"Amérique du Nord","regions.na.body":"Marché de lancement et base d'ingénierie, ancrés dans les normes des réseaux de cartes et les standards fédéraux des données financières.",
+    "regions.eu.title":"Europe","regions.eu.body":"Un point d'entrée fondé sur la profondeur réglementaire, prêt pour le régime financier-cyber le plus mature au monde.",
+    "regions.af.title":"Afrique","regions.af.body":"Sécurité du mobile money et des canaux USSD pour les marchés fintech à la croissance la plus rapide du continent.",
+    "callout.quote":"Les éditeurs d'outils vendent un logiciel que vos ingénieurs doivent encore corriger. Les auditeurs disparaissent entre deux missions. Nous restons embarqués — et nous livrons le correctif.",
+    "callout.attr":"— Pourquoi les équipes fintech et bancaires choisissent Codeward plutôt qu'une plateforme seule, un audit Big 4 ou un prestataire de gardiennage",
+    "footer.cta":"Prêt à livrer du code sécurisé, pas seulement conforme ?","footer.btn":"Contacter l'équipe",
+    "footer.tagline":"Codeward Security — Où le code rencontre la conviction.",
+    "footer.bottom":"© 2026 Codeward Security. Présent en Amérique du Nord, en Europe et en Afrique."
+  }
+};
+
+function applyLang(lang){
+  document.documentElement.setAttribute('lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var key = el.getAttribute('data-i18n');
+    var val = COPY[lang][key];
+    if(val !== undefined) el.textContent = val;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+    var key = el.getAttribute('data-i18n-html');
+    var val = COPY[lang][key];
+    if(val !== undefined) el.innerHTML = val;
+  });
+  document.querySelectorAll('.lang-toggle button').forEach(function(btn){
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+}
+
+document.querySelectorAll('.lang-toggle button').forEach(function(btn){
+  btn.addEventListener('click', function(){ applyLang(btn.getAttribute('data-lang')); });
+});
+applyLang('en');
+</script>
+</body>
+</html>
