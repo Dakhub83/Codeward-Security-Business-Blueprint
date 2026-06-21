@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Codeward Security — Where Code Meets Conviction</title>
+<meta name="description" content="Codeward Security is a developer-first cybersecurity firm for fintech, neo-banks, and financial institutions — securing code, pipelines, and physical infrastructure across North America, Europe & Africa.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23a6192e'/%3E%3Ctext x='32' y='44' font-family='monospace' font-size='34' font-weight='700' fill='white' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Codeward Security — Where Code Meets Conviction">
+<meta property="og:description" content="A developer-first cybersecurity firm for fintech, neo-banks, and financial institutions across North America, Europe & Africa.">
+<meta property="og:image" content="og-image.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Codeward Security — Where Code Meets Conviction">
+<meta name="twitter:description" content="A developer-first cybersecurity firm for fintech, neo-banks, and financial institutions across North America, Europe & Africa.">
+<meta name="twitter:image" content="og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -328,6 +340,47 @@
     border-radius:3px; padding:4px 9px; letter-spacing:0.02em;
   }
 
+  /* ---------- how it works ---------- */
+  .process{ background:var(--ink); }
+  .process-grid{
+    display:grid; grid-template-columns:1fr; gap:1px;
+    background:var(--ink-line); border:1px solid var(--ink-line); border-radius:8px; overflow:hidden;
+  }
+  @media (min-width:760px){ .process-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (min-width:1100px){ .process-grid{ grid-template-columns:repeat(4,1fr); } }
+  .process-step{ background:var(--carbon); padding:26px 22px 28px; }
+  .process-num{
+    font-family:var(--font-mono); font-size:13px; font-weight:700;
+    color:var(--red-bright); letter-spacing:0.06em; margin:0 0 16px;
+  }
+  .process-step h3{
+    font-family:var(--font-display); font-weight:600; font-size:18px;
+    color:#fff; margin:0 0 9px; line-height:1.3;
+  }
+  .process-step p{ font-size:13.5px; line-height:1.6; color:#aeaeb4; margin:0; }
+
+  /* ---------- faq ---------- */
+  .faq{ background:var(--paper); }
+  .faq-list{ border-top:1px solid #e3e1da; }
+  .faq-item{ border-bottom:1px solid #e3e1da; }
+  .faq-item summary{
+    list-style:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+    padding:22px 2px; font-family:var(--font-display); font-weight:600;
+    font-size:17px; color:var(--ink);
+  }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-item summary .faq-icon{
+    font-family:var(--font-mono); color:var(--red); font-size:18px; flex-shrink:0;
+    transition:transform .2s ease;
+  }
+  .faq-item[open] summary .faq-icon{ transform:rotate(45deg); }
+  .faq-item p{
+    margin:0; padding:0 26px 24px 2px;
+    font-size:14.5px; line-height:1.65; color:var(--muted); max-width:64ch;
+  }
+
+
   /* ---------- callout ---------- */
   .callout{ background:var(--ink); padding-top:0; padding-bottom:96px; }
   .callout-box{
@@ -403,8 +456,8 @@
         </div>
         <div class="term-body">
           <div class="term-line"><span class="term-no">11</span><span class="term-code">  def charge(customer, amount):</span></div>
-          <div class="term-line minus"><span class="term-no">12</span><span class="term-code"><span class="sigil">−</span>    api_key = "sk_live_4f9a8e2c..."&nbsp; <span data-i18n="hero.term.comment1"># hardcoded credential</span></span></div>
-          <div class="term-line plus"><span class="term-no">12</span><span class="term-code"><span class="sigil">+</span>    api_key = os.environ["STRIPE_API_KEY"]</span></div>
+          <div class="term-line minus"><span class="term-no">12</span><span class="term-code"><span class="sigil">−</span>    api_key = "sk_live_4f9a..."&nbsp; <span data-i18n="hero.term.comment1"># hardcoded</span></span></div>
+          <div class="term-line plus"><span class="term-no">12</span><span class="term-code"><span class="sigil">+</span>    api_key = os.environ["API_KEY"]</span></div>
           <div class="term-line"><span class="term-no">13</span><span class="term-code">  &nbsp;&nbsp;ledger.post(customer, amount)<span class="cursor"></span></span></div>
         </div>
         <div class="term-caption" data-i18n="hero.term.caption">A real fix, not just a finding.</div>
@@ -496,6 +549,38 @@
   </div>
 </section>
 
+<section class="process on-dark" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="section-eyebrow" data-i18n="process.eyebrow">How We Work</p>
+      <h2 data-i18n="process.h2">From first pull request to full coverage</h2>
+      <p class="section-sub" data-i18n="process.sub">A land-and-expand model built around your engineering team's actual pace — not a one-time audit.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <p class="process-num">01</p>
+        <h3 data-i18n="process.s1.title">Pilot Review</h3>
+        <p data-i18n="process.s1.body">A scoped AppSec or DevSecOps review on one repository or pipeline. Two to four weeks, fixed scope, real fixes delivered as pull requests — not a PDF.</p>
+      </div>
+      <div class="process-step">
+        <p class="process-num">02</p>
+        <h3 data-i18n="process.s2.title">Embedded Engagement</h3>
+        <p data-i18n="process.s2.body">Security engineers join your actual sprint cadence — standups, code review, retros — rather than parachuting in once a year.</p>
+      </div>
+      <div class="process-step">
+        <p class="process-num">03</p>
+        <h3 data-i18n="process.s3.title">Continuous Coverage</h3>
+        <p data-i18n="process.s3.body">24/7 vSOC monitoring, ongoing compliance evidence collection, and pipeline gates that scale as you ship.</p>
+      </div>
+      <div class="process-step">
+        <p class="process-num">04</p>
+        <h3 data-i18n="process.s4.title">Scale With You</h3>
+        <p data-i18n="process.s4.body">New region, new branch, new regulator? We extend coverage — from DORA readiness in Europe to physical security equipment for a new data center.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="regions" id="regions">
   <div class="wrap">
     <div class="section-head reveal">
@@ -538,6 +623,39 @@
   </div>
 </section>
 
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="section-eyebrow" data-i18n="faq.eyebrow">Questions</p>
+      <h2 data-i18n="faq.h2">Before you book a call</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary><span data-i18n="faq.q1.q">How is this different from just using Snyk or hiring a pentest firm?</span><span class="faq-icon">+</span></summary>
+        <p data-i18n="faq.q1.a">Tooling vendors hand you findings your own engineers still have to fix. Pentest firms show up once and disappear until next year. We do both — and stay embedded between assessments, shipping the actual fix as a pull request.</p>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq.q2.q">Do you work with early-stage startups, or only large banks?</span><span class="faq-icon">+</span></summary>
+        <p data-i18n="faq.q2.a">Both. The engagement model and pacing differ — startups get fast, scoped sprints; established banks get longer, governance-aware roadmaps — but the same engineering team and standards apply across every segment.</p>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq.q3.q">What does pricing look like?</span><span class="faq-icon">+</span></summary>
+        <p data-i18n="faq.q3.a">Pilot reviews are scoped and fixed-price. Ongoing engagements (DevSecOps, vSOC, GRC) are typically retained monthly, sized to your team and surface area. Book a pilot review for a real quote, not a generic price list.</p>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq.q4.q">Which regions do you actually operate in?</span><span class="faq-icon">+</span></summary>
+        <p data-i18n="faq.q4.a">North America today, with regulatory-ready practices already standing in Europe (DORA, NIS2, GDPR) and Africa (NDPA, POPIA, Kenya's Data Protection Act).</p>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq.q5.q">Do you really do physical security too?</span><span class="faq-icon">+</span></summary>
+        <p data-i18n="faq.q5.a">Yes — IP video, access control, and alarm systems for branches and data centers, sold, installed, and kept patched. We treat that hardware the way we treat code: something with firmware that needs maintaining, not a one-time install.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <footer id="contact">
   <div class="wrap">
     <div class="footer-top">
@@ -559,7 +677,7 @@ const COPY = {
     "hero.h1":"Where Code<br>Meets <em>Conviction.</em>",
     "hero.lede":"We don't hand back a findings PDF. We sit inside the pull request, the pipeline, and the architecture review — fixing security defects at the source for fintech platforms, neo-banks, and the banks and regulators that oversee them.",
     "hero.cta1":"Book a Pilot Review","hero.cta2":"See the Services",
-    "hero.term.comment1":"# hardcoded credential",
+    "hero.term.comment1":"# hardcoded",
     "hero.term.caption":"A real fix, not just a finding.",
     "pillars.eyebrow":"Why Codeward","pillars.h2":"Three pillars, one engineering team",
     "pillars.sub":"Differentiation that audit-only consultancies can't replicate — because they were never built by practitioners shipping production code under live PCI-DSS and SOC 2 pressure.",
@@ -590,7 +708,24 @@ const COPY = {
     "callout.attr":"— Why fintech & banking teams choose Codeward over a platform, a Big 4 audit, or a guard company alone",
     "footer.cta":"Ready to ship secure, not just compliant?","footer.btn":"Talk to the Team",
     "footer.tagline":"Codeward Security — Where Code Meets Conviction.",
-    "footer.bottom":"© 2026 Codeward Security. Operating across North America, Europe & Africa."
+    "footer.bottom":"© 2026 Codeward Security. Operating across North America, Europe & Africa.",
+    "process.eyebrow":"How We Work","process.h2":"From first pull request to full coverage",
+    "process.sub":"A land-and-expand model built around your engineering team's actual pace — not a one-time audit.",
+    "process.s1.title":"Pilot Review","process.s1.body":"A scoped AppSec or DevSecOps review on one repository or pipeline. Two to four weeks, fixed scope, real fixes delivered as pull requests — not a PDF.",
+    "process.s2.title":"Embedded Engagement","process.s2.body":"Security engineers join your actual sprint cadence — standups, code review, retros — rather than parachuting in once a year.",
+    "process.s3.title":"Continuous Coverage","process.s3.body":"24/7 vSOC monitoring, ongoing compliance evidence collection, and pipeline gates that scale as you ship.",
+    "process.s4.title":"Scale With You","process.s4.body":"New region, new branch, new regulator? We extend coverage — from DORA readiness in Europe to physical security equipment for a new data center.",
+    "faq.eyebrow":"Questions","faq.h2":"Before you book a call",
+    "faq.q1.q":"How is this different from just using Snyk or hiring a pentest firm?",
+    "faq.q1.a":"Tooling vendors hand you findings your own engineers still have to fix. Pentest firms show up once and disappear until next year. We do both — and stay embedded between assessments, shipping the actual fix as a pull request.",
+    "faq.q2.q":"Do you work with early-stage startups, or only large banks?",
+    "faq.q2.a":"Both. The engagement model and pacing differ — startups get fast, scoped sprints; established banks get longer, governance-aware roadmaps — but the same engineering team and standards apply across every segment.",
+    "faq.q3.q":"What does pricing look like?",
+    "faq.q3.a":"Pilot reviews are scoped and fixed-price. Ongoing engagements (DevSecOps, vSOC, GRC) are typically retained monthly, sized to your team and surface area. Book a pilot review for a real quote, not a generic price list.",
+    "faq.q4.q":"Which regions do you actually operate in?",
+    "faq.q4.a":"North America today, with regulatory-ready practices already standing in Europe (DORA, NIS2, GDPR) and Africa (NDPA, POPIA, Kenya's Data Protection Act).",
+    "faq.q5.q":"Do you really do physical security too?",
+    "faq.q5.a":"Yes — IP video, access control, and alarm systems for branches and data centers, sold, installed, and kept patched. We treat that hardware the way we treat code: something with firmware that needs maintaining, not a one-time install."
   },
   fr: {
     "nav.services":"Services","nav.regions":"Régions","nav.why":"Pourquoi nous","nav.contact":"Contact",
@@ -598,7 +733,7 @@ const COPY = {
     "hero.h1":"Où le code<br>rencontre la <em>conviction.</em>",
     "hero.lede":"Nous ne remettons pas un simple rapport de constats. Nous intervenons directement dans la pull request, le pipeline et la revue d'architecture — en corrigeant les failles à la source pour les plateformes fintech, les néo-banques, ainsi que les banques et régulateurs qui les supervisent.",
     "hero.cta1":"Réserver un audit pilote","hero.cta2":"Voir les services",
-    "hero.term.comment1":"# identifiant codé en dur",
+    "hero.term.comment1":"# secret en dur",
     "hero.term.caption":"Un vrai correctif, pas seulement un constat.",
     "pillars.eyebrow":"Pourquoi Codeward","pillars.h2":"Trois piliers, une seule équipe d'ingénierie",
     "pillars.sub":"Une différenciation que les cabinets d'audit seul ne peuvent reproduire — car ils n'ont jamais été bâtis par des praticiens livrant du code en production sous la pression réelle de PCI-DSS et SOC 2.",
@@ -629,7 +764,24 @@ const COPY = {
     "callout.attr":"— Pourquoi les équipes fintech et bancaires choisissent Codeward plutôt qu'une plateforme seule, un audit Big 4 ou un prestataire de gardiennage",
     "footer.cta":"Prêt à livrer du code sécurisé, pas seulement conforme ?","footer.btn":"Contacter l'équipe",
     "footer.tagline":"Codeward Security — Où le code rencontre la conviction.",
-    "footer.bottom":"© 2026 Codeward Security. Présent en Amérique du Nord, en Europe et en Afrique."
+    "footer.bottom":"© 2026 Codeward Security. Présent en Amérique du Nord, en Europe et en Afrique.",
+    "process.eyebrow":"Comment nous travaillons","process.h2":"De la première pull request à une couverture complète",
+    "process.sub":"Un modèle progressif construit autour du rythme réel de votre équipe d'ingénierie — pas un audit ponctuel.",
+    "process.s1.title":"Audit pilote","process.s1.body":"Une revue AppSec ou DevSecOps ciblée sur un dépôt ou un pipeline. Deux à quatre semaines, périmètre fixe, de vrais correctifs livrés sous forme de pull requests — pas un PDF.",
+    "process.s2.title":"Engagement intégré","process.s2.body":"Les ingénieurs sécurité rejoignent le rythme réel de vos sprints — réunions quotidiennes, revues de code, rétrospectives — plutôt que d'intervenir une fois par an.",
+    "process.s3.title":"Couverture continue","process.s3.body":"Surveillance vSOC 24 h/24 et 7 j/7, collecte continue de preuves de conformité, et contrôles de pipeline qui évoluent avec vos livraisons.",
+    "process.s4.title":"Évoluer avec vous","process.s4.body":"Nouvelle région, nouvelle agence, nouveau régulateur ? Nous étendons la couverture — de la préparation à DORA en Europe aux équipements de sécurité physique pour un nouveau centre de données.",
+    "faq.eyebrow":"Questions","faq.h2":"Avant de réserver un appel",
+    "faq.q1.q":"En quoi est-ce différent du simple fait d'utiliser Snyk ou d'engager un cabinet de tests d'intrusion ?",
+    "faq.q1.a":"Les éditeurs d'outils vous remettent des constats que vos propres ingénieurs doivent encore corriger. Les cabinets de tests d'intrusion interviennent une fois puis disparaissent jusqu'à l'année suivante. Nous faisons les deux — et restons embarqués entre deux évaluations, en livrant le correctif réel sous forme de pull request.",
+    "faq.q2.q":"Travaillez-vous avec des start-ups en phase de démarrage, ou seulement avec de grandes banques ?",
+    "faq.q2.a":"Les deux. Le modèle d'engagement et le rythme diffèrent — les start-ups bénéficient de sprints rapides et ciblés, les banques établies de feuilles de route plus longues et respectueuses de leur gouvernance — mais la même équipe d'ingénierie et les mêmes standards s'appliquent à tous les segments.",
+    "faq.q3.q":"À quoi ressemble la tarification ?",
+    "faq.q3.a":"Les audits pilotes sont à périmètre et prix fixes. Les engagements continus (DevSecOps, vSOC, GRC) sont généralement facturés mensuellement, calibrés selon votre équipe et votre surface d'exposition. Réservez un audit pilote pour obtenir un devis réel, pas une grille tarifaire générique.",
+    "faq.q4.q":"Dans quelles régions opérez-vous réellement ?",
+    "faq.q4.a":"En Amérique du Nord aujourd'hui, avec des pratiques déjà prêtes sur le plan réglementaire en Europe (DORA, NIS2, RGPD) et en Afrique (NDPA, POPIA, loi kényane sur la protection des données).",
+    "faq.q5.q":"Faites-vous vraiment aussi de la sécurité physique ?",
+    "faq.q5.a":"Oui — vidéosurveillance IP, contrôle d'accès et systèmes d'alarme pour les agences et centres de données, vendus, installés et maintenus à jour. Nous traitons ce matériel comme nous traitons le code : comme quelque chose dont le firmware doit être maintenu, pas une simple installation ponctuelle."
   }
 };
 
