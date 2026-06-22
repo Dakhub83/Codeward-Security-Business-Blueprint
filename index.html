@@ -469,6 +469,61 @@
   .blog-card h3{ font-family:var(--font-display); font-weight:600; font-size:18px; color:#fff; margin:0 0 10px; line-height:1.3; }
   .blog-card p{ font-size:13.5px; line-height:1.55; color:#aeaeb4; margin:0; }
 
+  /* ---------- scroll offset for sticky nav ---------- */
+  section[id], header[id]{ scroll-margin-top:72px; }
+
+  /* ---------- learn / best practices ---------- */
+  .learn{ background:var(--ink); }
+  .learn-tabs{
+    display:flex; gap:0; overflow-x:auto;
+    border-bottom:1px solid var(--ink-line);
+    margin-bottom:40px;
+    scrollbar-width:none;
+  }
+  .learn-tabs::-webkit-scrollbar{ display:none; }
+  .learn-tab{
+    font-family:var(--font-mono); font-size:12px; font-weight:600;
+    letter-spacing:0.05em; color:var(--silver);
+    background:transparent; border:none; cursor:pointer;
+    padding:14px 18px; white-space:nowrap;
+    border-bottom:2px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .learn-tab:hover{ color:var(--silver-bright); }
+  .learn-tab.active{ color:#fff; border-bottom-color:var(--red); }
+  .learn-panel{ display:none; }
+  .learn-panel.active{ display:block; }
+  .practice-grid{
+    display:grid; grid-template-columns:1fr; gap:16px;
+  }
+  @media(min-width:640px){ .practice-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(min-width:1020px){ .practice-grid{ grid-template-columns:repeat(3,1fr); } }
+  .practice-card{
+    background:var(--carbon); border:1px solid var(--ink-line);
+    border-radius:8px; padding:22px 22px 20px;
+    display:flex; flex-direction:column; gap:10px;
+    transition:border-color .15s ease;
+  }
+  .practice-card:hover{ border-color:var(--red); }
+  .practice-num{
+    font-family:var(--font-mono); font-size:11px; font-weight:700;
+    color:var(--red); letter-spacing:0.08em;
+  }
+  .practice-title{
+    font-family:var(--font-display); font-weight:600; font-size:17px;
+    color:#fff; line-height:1.3; margin:0;
+  }
+  .practice-body{
+    font-size:13.5px; line-height:1.6; color:#aeaeb4; margin:0; flex:1;
+  }
+  .practice-service{
+    font-family:var(--font-mono); font-size:10.5px; font-weight:600;
+    color:#8fafc8; background:rgba(26,45,66,0.7);
+    border:1px solid rgba(26,45,66,0.9);
+    border-radius:3px; padding:4px 9px; letter-spacing:0.04em;
+    display:inline-block; align-self:flex-start; margin-top:4px;
+  }
+
   /* ---------- contact form ---------- */
   .contact-section{ background:var(--paper); }
   .contact-grid{
@@ -555,6 +610,7 @@
       <li><a href="#industries" data-i18n="nav.industries">Industries</a></li>
       <li><a href="#work" data-i18n="nav.work">Work</a></li>
       <li><a href="#insights" data-i18n="nav.insights">Insights</a></li>
+      <li><a href="#learn" data-i18n="nav.learn">Best Practices</a></li>
       <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <div class="lang-toggle" role="group" aria-label="Language">
@@ -888,6 +944,102 @@
   </div>
 </section>
 
+<section class="learn on-dark" id="learn">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="section-eyebrow" data-i18n="learn.eyebrow">Security Best Practices</p>
+      <h2 data-i18n="learn.h2">What good security looks like, across every layer</h2>
+      <p class="section-sub" data-i18n="learn.sub">Practical, engineering-first guidance for businesses and technical teams — no vendor lock-in, no scare tactics.</p>
+    </div>
+    <div class="learn-tabs" role="tablist" id="learnTabs">
+      <button class="learn-tab active" role="tab" data-panel="code" data-i18n="learn.tab.code">Code Security</button>
+      <button class="learn-tab" role="tab" data-panel="devsecops" data-i18n="learn.tab.devsecops">DevSecOps</button>
+      <button class="learn-tab" role="tab" data-panel="network" data-i18n="learn.tab.network">Network</button>
+      <button class="learn-tab" role="tab" data-panel="cloud" data-i18n="learn.tab.cloud">Cloud</button>
+      <button class="learn-tab" role="tab" data-panel="compliance" data-i18n="learn.tab.compliance">Compliance</button>
+      <button class="learn-tab" role="tab" data-panel="physical" data-i18n="learn.tab.physical">Physical Security</button>
+      <button class="learn-tab" role="tab" data-panel="awareness" data-i18n="learn.tab.awareness">Awareness</button>
+    </div>
+
+    <div id="panel-code" class="learn-panel active">
+      <div class="practice-grid">
+        <div class="practice-card"><p class="practice-num">01</p><p class="practice-title" data-i18n="lp.c1.t">Never store secrets in code</p><p class="practice-body" data-i18n="lp.c1.b">API keys, database passwords, and certificates hardcoded in source files are the single most common cause of credential leaks. Use environment variables and a secrets manager — every cloud provider offers one.</p><span class="practice-service" data-i18n="lp.svc.appsec">AppSec & Code Audit</span></div>
+        <div class="practice-card"><p class="practice-num">02</p><p class="practice-title" data-i18n="lp.c2.t">Scan dependencies before merging</p><p class="practice-body" data-i18n="lp.c2.b">Your application is as vulnerable as its weakest library. Automated Software Composition Analysis (SCA) flags known CVEs in open-source packages before they reach production, not after a breach.</p><span class="practice-service" data-i18n="lp.svc.appsec">AppSec & Code Audit</span></div>
+        <div class="practice-card"><p class="practice-num">03</p><p class="practice-title" data-i18n="lp.c3.t">Validate input at every boundary</p><p class="practice-body" data-i18n="lp.c3.b">Never trust data from users, APIs, or external services. Validate length, type, format, and range at every entry point. Injection flaws — SQL, command, LDAP — are always the result of trusting unvalidated input.</p><span class="practice-service" data-i18n="lp.svc.appsec">AppSec & Code Audit</span></div>
+        <div class="practice-card"><p class="practice-num">04</p><p class="practice-title" data-i18n="lp.c4.t">Use parameterized queries, always</p><p class="practice-body" data-i18n="lp.c4.b">String-concatenated SQL is one of the oldest known vulnerabilities and still among the most exploited. Parameterized queries and prepared statements eliminate the entire class of SQL injection — there is no acceptable excuse for not using them.</p><span class="practice-service" data-i18n="lp.svc.appsec">AppSec & Code Audit</span></div>
+        <div class="practice-card"><p class="practice-num">05</p><p class="practice-title" data-i18n="lp.c5.t">Security-review authentication logic manually</p><p class="practice-body" data-i18n="lp.c5.b">Automated scanners miss business-logic flaws in login, session management, and password-reset flows. A human engineer familiar with auth attack patterns — brute force, token replay, account enumeration — must review these flows before launch.</p><span class="practice-service" data-i18n="lp.svc.appsec">AppSec & Code Audit</span></div>
+        <div class="practice-card"><p class="practice-num">06</p><p class="practice-title" data-i18n="lp.c6.t">Keep a Software Bill of Materials</p><p class="practice-body" data-i18n="lp.c6.b">An SBOM is an inventory of every library and component your software contains. When a zero-day like Log4Shell surfaces, organizations with an SBOM know within minutes whether they're exposed. Those without one spend weeks guessing.</p><span class="practice-service" data-i18n="lp.svc.devsecops">DevSecOps</span></div>
+      </div>
+    </div>
+
+    <div id="panel-devsecops" class="learn-panel">
+      <div class="practice-grid">
+        <div class="practice-card"><p class="practice-num">01</p><p class="practice-title" data-i18n="lp.d1.t">Run security checks on every commit</p><p class="practice-body" data-i18n="lp.d1.b">Security testing at the end of a release cycle finds flaws when they're expensive to fix. A SAST gate on every pull request finds them when a developer is still in context and the fix takes minutes, not days.</p><span class="practice-service" data-i18n="lp.svc.devsecops">DevSecOps</span></div>
+        <div class="practice-card"><p class="practice-num">02</p><p class="practice-title" data-i18n="lp.d2.t">Fail builds on critical findings</p><p class="practice-body" data-i18n="lp.d2.b">A scanner that generates a report nobody reads is theater. Blocking deployments automatically on verified critical or high-severity findings ensures security has teeth — configure it with a path to exception handling so legitimate urgency doesn't bypass the gate.</p><span class="practice-service" data-i18n="lp.svc.devsecops">DevSecOps</span></div>
+        <div class="practice-card"><p class="practice-num">03</p><p class="practice-title" data-i18n="lp.d3.t">Scan infrastructure-as-code before apply</p><p class="practice-body" data-i18n="lp.d3.b">Terraform, CloudFormation, and Pulumi misconfigurations are one of the top cloud breach vectors. Tools like Checkov and tfsec catch open S3 buckets, missing encryption, and excessive IAM permissions before they're ever provisioned.</p><span class="practice-service" data-i18n="lp.svc.devsecops">DevSecOps</span></div>
+        <div class="practice-card"><p class="practice-num">04</p><p class="practice-title" data-i18n="lp.d4.t">Sign and verify release artifacts</p><p class="practice-body" data-i18n="lp.d4.b">Supply-chain attacks insert malicious code between build and deploy. Signing artifacts with Sigstore/Cosign and verifying signatures at deployment time ensures that what you built is exactly what you shipped — nothing more was added in transit.</p><span class="practice-service" data-i18n="lp.svc.devsecops">DevSecOps</span></div>
+        <div class="practice-card"><p class="practice-num">05</p><p class="practice-title" data-i18n="lp.d5.t">Rotate credentials on a schedule</p><p class="practice-body" data-i18n="lp.d5.b">Credentials that never rotate are credentials that inevitably leak. Automate rotation for database passwords, API keys, and service accounts — and revoke the previous value immediately rather than leaving it valid "just in case."</p><span class="practice-service" data-i18n="lp.svc.devsecops">DevSecOps</span></div>
+        <div class="practice-card"><p class="practice-num">06</p><p class="practice-title" data-i18n="lp.d6.t">Track MTTR alongside velocity</p><p class="practice-body" data-i18n="lp.d6.b">Mean-time-to-remediate is a security KPI as meaningful as deployment frequency. Teams that measure it hold themselves accountable for closing findings, not just discovering them — and tend to fix vulnerabilities 3–5× faster than teams that don't.</p><span class="practice-service" data-i18n="lp.svc.vsoc">Continuous Monitoring</span></div>
+      </div>
+    </div>
+
+    <div id="panel-network" class="learn-panel">
+      <div class="practice-grid">
+        <div class="practice-card"><p class="practice-num">01</p><p class="practice-title" data-i18n="lp.n1.t">Segment your network by risk level</p><p class="practice-body" data-i18n="lp.n1.b">Payment systems, production servers, and employee laptops should never share a flat network. Segmentation with VLANs or software-defined perimeters limits blast radius — a compromised workstation can't reach your database if they're on separate segments.</p><span class="practice-service" data-i18n="lp.svc.network">Network & Cloud Security</span></div>
+        <div class="practice-card"><p class="practice-num">02</p><p class="practice-title" data-i18n="lp.n2.t">Replace VPN-only access with zero-trust</p><p class="practice-body" data-i18n="lp.n2.b">Traditional VPNs grant broad network access once authenticated. Zero-trust network access (ZTNA) grants access only to specific applications based on user identity, device health, and context — lateral movement becomes structurally much harder.</p><span class="practice-service" data-i18n="lp.svc.network">Network & Cloud Security</span></div>
+        <div class="practice-card"><p class="practice-num">03</p><p class="practice-title" data-i18n="lp.n3.t">Monitor east-west traffic, not just the perimeter</p><p class="practice-body" data-i18n="lp.n3.b">Most breaches involve lateral movement inside the network after an initial foothold. Monitoring traffic between internal systems — not just traffic entering and leaving — detects attackers who have already bypassed the perimeter.</p><span class="practice-service" data-i18n="lp.svc.vsoc">Continuous Monitoring</span></div>
+        <div class="practice-card"><p class="practice-num">04</p><p class="practice-title" data-i18n="lp.n4.t">Audit firewall rules quarterly</p><p class="practice-body" data-i18n="lp.n4.b">Firewall rules accumulate over time. Rules added for a temporary project rarely get removed. A quarterly audit removes stale rules, tightens overly-broad permissions, and reduces attack surface that nobody is actively defending.</p><span class="practice-service" data-i18n="lp.svc.network">Network & Cloud Security</span></div>
+        <div class="practice-card"><p class="practice-num">05</p><p class="practice-title" data-i18n="lp.n5.t">Enforce MFA on all remote access, no exceptions</p><p class="practice-body" data-i18n="lp.n5.b">Stolen passwords are the most common initial access vector. Multi-factor authentication is the single highest-ROI security control for remote access — it blocks the vast majority of credential-based attacks even when passwords are fully compromised.</p><span class="practice-service" data-i18n="lp.svc.network">Network & Cloud Security</span></div>
+        <div class="practice-card"><p class="practice-num">06</p><p class="practice-title" data-i18n="lp.n6.t">Test your API endpoints for authorization flaws</p><p class="practice-body" data-i18n="lp.n6.b">Broken Object Level Authorization (BOLA) lets one authenticated user access another user's data by simply changing an ID in a request. It's the most common API vulnerability and rarely detected by automated scanners — it requires manual testing by someone thinking like an attacker.</p><span class="practice-service" data-i18n="lp.svc.network">Network & Cloud Security</span></div>
+      </div>
+    </div>
+
+    <div id="panel-cloud" class="learn-panel">
+      <div class="practice-grid">
+        <div class="practice-card"><p class="practice-num">01</p><p class="practice-title" data-i18n="lp.cl1.t">Apply least-privilege IAM from day one</p><p class="practice-body" data-i18n="lp.cl1.b">No user, service account, or Lambda function should have more permissions than it needs. Start with minimum permissions and expand when needed — overly-broad IAM roles are among the top cloud misconfigurations exploited in breaches.</p><span class="practice-service" data-i18n="lp.svc.network">Network & Cloud Security</span></div>
+        <div class="practice-card"><p class="practice-num">02</p><p class="practice-title" data-i18n="lp.cl2.t">Enable audit logging in every region</p><p class="practice-body" data-i18n="lp.cl2.b">CloudTrail, Azure Monitor, and GCP Audit Logs are cheap to enable and invaluable during incident response. Enable them in every region — not just the ones you think you're using — because attackers intentionally spin up resources in quiet regions to avoid detection.</p><span class="practice-service" data-i18n="lp.svc.vsoc">Continuous Monitoring</span></div>
+        <div class="practice-card"><p class="practice-num">03</p><p class="practice-title" data-i18n="lp.cl3.t">Scan IaC before provisioning</p><p class="practice-body" data-i18n="lp.cl3.b">Infrastructure misconfigurations are consistently the #1 cloud breach vector. Running Checkov or tfsec in CI before terraform apply catches public S3 buckets, unencrypted databases, and open security groups before they're ever created.</p><span class="practice-service" data-i18n="lp.svc.devsecops">DevSecOps</span></div>
+        <div class="practice-card"><p class="practice-num">04</p><p class="practice-title" data-i18n="lp.cl4.t">Encrypt data at rest and in transit</p><p class="practice-body" data-i18n="lp.cl4.b">Use your cloud provider's KMS for encryption at rest on every storage service. Enforce TLS 1.2+ for all data in transit — and revoke support for older protocols explicitly rather than hoping they're disabled by default.</p><span class="practice-service" data-i18n="lp.svc.network">Network & Cloud Security</span></div>
+        <div class="practice-card"><p class="practice-num">05</p><p class="practice-title" data-i18n="lp.cl5.t">Audit public-facing storage monthly</p><p class="practice-body" data-i18n="lp.cl5.b">Publicly accessible S3 buckets and Azure Blob containers have exposed sensitive data at virtually every major cloud provider. Run a monthly audit of public access settings — and turn on AWS S3 Block Public Access or its equivalent at the account level as a guardrail.</p><span class="practice-service" data-i18n="lp.svc.network">Network & Cloud Security</span></div>
+        <div class="practice-card"><p class="practice-num">06</p><p class="practice-title" data-i18n="lp.cl6.t">Harden container images before deployment</p><p class="practice-body" data-i18n="lp.cl6.b">Use minimal base images, run containers as non-root, scan images for CVEs before pushing to a registry, and enforce signed images at deployment. An unpatched container image is as dangerous as an unpatched server — with the added risk of running at scale.</p><span class="practice-service" data-i18n="lp.svc.devsecops">DevSecOps</span></div>
+      </div>
+    </div>
+
+    <div id="panel-compliance" class="learn-panel">
+      <div class="practice-grid">
+        <div class="practice-card"><p class="practice-num">01</p><p class="practice-title" data-i18n="lp.gr1.t">Map controls to frameworks early</p><p class="practice-body" data-i18n="lp.gr1.b">Retrofitting compliance onto a system built without it is 3–5× more expensive than building it in from the start. Whether you're targeting SOC 2, PCI-DSS, ISO 27001, or DORA — understand the control requirements before you architect, not during the audit.</p><span class="practice-service" data-i18n="lp.svc.grc">GRC & Compliance</span></div>
+        <div class="practice-card"><p class="practice-num">02</p><p class="practice-title" data-i18n="lp.gr2.t">Automate evidence collection</p><p class="practice-body" data-i18n="lp.gr2.b">Manual evidence gathering — screenshots, exported logs, email trails — does not scale beyond your first audit. Platforms like Vanta and Drata continuously collect evidence and map it to controls automatically. The cost of automation is a fraction of the cost of a failed audit.</p><span class="practice-service" data-i18n="lp.svc.grc">GRC & Compliance</span></div>
+        <div class="practice-card"><p class="practice-num">03</p><p class="practice-title" data-i18n="lp.gr3.t">Know your breach notification deadlines</p><p class="practice-body" data-i18n="lp.gr3.b">GDPR, DORA, Nigeria's NDPA, and Kenya's Data Protection Act all mandate breach notification within 72 hours of becoming aware of an incident. Missing this deadline is a separate regulatory violation from the breach itself — your incident response plan must include notification steps and pre-drafted templates.</p><span class="practice-service" data-i18n="lp.svc.grc">GRC & Compliance</span></div>
+        <div class="practice-card"><p class="practice-num">04</p><p class="practice-title" data-i18n="lp.gr4.t">Conduct quarterly risk assessments</p><p class="practice-body" data-i18n="lp.gr4.b">Annual risk assessments miss the threats that emerged in months two through eleven. A lightweight quarterly review — what changed in our environment, our vendor relationships, and the threat landscape — keeps your risk register actionable rather than a document that ages in a folder.</p><span class="practice-service" data-i18n="lp.svc.grc">GRC & Compliance</span></div>
+        <div class="practice-card"><p class="practice-num">05</p><p class="practice-title" data-i18n="lp.gr5.t">Vet your vendors the same way you vet your code</p><p class="practice-body" data-i18n="lp.gr5.b">Under DORA and NIS2, regulated entities are explicitly accountable for the cyber posture of their ICT third-party providers. A vendor questionnaire submitted once at onboarding is not third-party risk management — it requires ongoing monitoring, contractual obligations, and regular reassessment.</p><span class="practice-service" data-i18n="lp.svc.grc">GRC & Compliance</span></div>
+        <div class="practice-card"><p class="practice-num">06</p><p class="practice-title" data-i18n="lp.gr6.t">Test your incident response plan before you need it</p><p class="practice-body" data-i18n="lp.gr6.b">A plan that has never been tested is a hypothesis, not a capability. Run tabletop exercises at least twice a year — simulate a ransomware attack, a credential breach, a third-party outage — and update the plan based on what the exercise reveals.</p><span class="practice-service" data-i18n="lp.svc.vsoc">Continuous Monitoring</span></div>
+      </div>
+    </div>
+
+    <div id="panel-physical" class="learn-panel">
+      <div class="practice-grid">
+        <div class="practice-card"><p class="practice-num">01</p><p class="practice-title" data-i18n="lp.ph1.t">Change default credentials at installation</p><p class="practice-body" data-i18n="lp.ph1.b">IP cameras, access controllers, and alarm panels ship with default usernames and passwords that are publicly documented. Leaving them in place is the physical-security equivalent of leaving your front door unlocked — and these devices are internet-reachable.</p><span class="practice-service" data-i18n="lp.svc.physical">Physical Security</span></div>
+        <div class="practice-card"><p class="practice-num">02</p><p class="practice-title" data-i18n="lp.ph2.t">Patch physical security firmware</p><p class="practice-body" data-i18n="lp.ph2.b">Cameras and access controllers run embedded operating systems with real CVEs that go unpatched for months or years. Treat physical security devices the same way you treat servers — subscribe to vendor security bulletins and patch on a defined schedule, not only when something breaks.</p><span class="practice-service" data-i18n="lp.svc.physical">Physical Security</span></div>
+        <div class="practice-card"><p class="practice-num">03</p><p class="practice-title" data-i18n="lp.ph3.t">Isolate physical security from corporate IT</p><p class="practice-body" data-i18n="lp.ph3.b">Your IP camera network should not share a subnet with your corporate laptops. A compromised camera on a flat network can be used as a pivot point into your file servers. Place physical security devices on a dedicated, firewalled VLAN with strict ingress and egress rules.</p><span class="practice-service" data-i18n="lp.svc.physical">Physical Security</span></div>
+        <div class="practice-card"><p class="practice-num">04</p><p class="practice-title" data-i18n="lp.ph4.t">Log and review physical access</p><p class="practice-body" data-i18n="lp.ph4.b">Access control systems generate detailed logs of who entered which door, when. Review server-room and sensitive-area access logs monthly — unusual after-hours access or repeated failed attempts are early indicators of insider threat or reconnaissance activity.</p><span class="practice-service" data-i18n="lp.svc.physical">Physical Security</span></div>
+        <div class="practice-card"><p class="practice-num">05</p><p class="practice-title" data-i18n="lp.ph5.t">Use multi-factor access control for sensitive areas</p><p class="practice-body" data-i18n="lp.ph5.b">A single access card can be cloned or stolen. Server rooms, data centers, and vaults should require a second factor — PIN, biometric, or time-of-day restriction — so that possessing a card alone is not sufficient for entry.</p><span class="practice-service" data-i18n="lp.svc.physical">Physical Security</span></div>
+        <div class="practice-card"><p class="practice-num">06</p><p class="practice-title" data-i18n="lp.ph6.t">Correlate physical and digital alerts</p><p class="practice-body" data-i18n="lp.ph6.b">An after-hours door access followed immediately by an unusual login from the same user is more meaningful than either alert alone. Integrating your physical access logs with your SIEM enables this correlation and catches attack patterns that siloed monitoring misses entirely.</p><span class="practice-service" data-i18n="lp.svc.vsoc">Continuous Monitoring</span></div>
+      </div>
+    </div>
+
+    <div id="panel-awareness" class="learn-panel">
+      <div class="practice-grid">
+        <div class="practice-card"><p class="practice-num">01</p><p class="practice-title" data-i18n="lp.aw1.t">Train before the breach, not after</p><p class="practice-body" data-i18n="lp.aw1.b">Security awareness training delivered reactively — after a phishing attack or a compliance finding — reaches people who are already demoralized. Build training into onboarding and run regular refreshers, so good habits form before they're tested by an actual attack.</p><span class="practice-service" data-i18n="lp.svc.training">Security Training</span></div>
+        <div class="practice-card"><p class="practice-num">02</p><p class="practice-title" data-i18n="lp.aw2.t">Run realistic phishing simulations</p><p class="practice-body" data-i18n="lp.aw2.b">Real phishing emails are tailored, timely, and convincing. Generic simulations that every employee recognizes do not measure real risk. Use sector-specific scenarios — fake vendor invoices, fake HR policy updates, fake regulatory notices — and measure both click rates and reporting rates.</p><span class="practice-service" data-i18n="lp.svc.training">Security Training</span></div>
+        <div class="practice-card"><p class="practice-num">03</p><p class="practice-title" data-i18n="lp.aw3.t">Build a no-blame reporting culture</p><p class="practice-body" data-i18n="lp.aw3.b">Employees who fear punishment for clicking a phishing link don't report it — and a breach that isn't reported isn't contained. Create a clear, low-friction channel for reporting suspicious activity and actively reinforce that reporting is the right behavior, not an admission of failure.</p><span class="practice-service" data-i18n="lp.svc.training">Security Training</span></div>
+        <div class="practice-card"><p class="practice-num">04</p><p class="practice-title" data-i18n="lp.aw4.t">Brief executives separately</p><p class="practice-body" data-i18n="lp.aw4.b">Executives are the highest-value targets for business email compromise, spear-phishing, and deep-fake voice fraud. They also tend to skip generic training. Run dedicated briefings that walk through real attack scenarios targeting their role, authority level, and communication patterns.</p><span class="practice-service" data-i18n="lp.svc.training">Security Training</span></div>
+        <div class="practice-card"><p class="practice-num">05</p><p class="practice-title" data-i18n="lp.aw5.t">Teach developers secure coding, not just awareness</p><p class="practice-body" data-i18n="lp.aw5.b">Generic phishing training is not what developers need. Engineers benefit from hands-on secure coding bootcamps — OWASP Top 10, secrets management, dependency hygiene — delivered in the context of their actual stack, not hypothetical scenarios disconnected from their daily work.</p><span class="practice-service" data-i18n="lp.svc.training">Security Training</span></div>
+        <div class="practice-card"><p class="practice-num">06</p><p class="practice-title" data-i18n="lp.aw6.t">Document training for your auditors</p><p class="practice-body" data-i18n="lp.aw6.b">SOC 2, PCI-DSS, HIPAA, and ISO 27001 all require documented security awareness training for employees. Maintain completion records, training materials, and assessment results — not just a calendar invite with a "done" checkbox. Auditors ask for evidence, not assurances.</p><span class="practice-service" data-i18n="lp.svc.grc">GRC & Compliance</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="contact-section" id="contact">
   <div class="wrap">
     <div class="contact-grid">
@@ -957,7 +1109,7 @@
 <script>
 const COPY = {
   en: {
-    "nav.services":"Services","nav.industries":"Industries","nav.work":"Work","nav.insights":"Insights","nav.contact":"Contact",
+    "nav.services":"Services","nav.industries":"Industries","nav.work":"Work","nav.insights":"Insights","nav.learn":"Best Practices","nav.contact":"Contact",
     "hero.eyebrow":"Security built by developers, for developers",
     "hero.h1":"Where Code<br>Meets <em>Conviction.</em>",
     "hero.lede":"We don't hand back a findings PDF. We sit inside the pull request, the pipeline, and the architecture review — fixing security defects at the source, for every regulated industry we serve.",
@@ -1033,10 +1185,57 @@ const COPY = {
     "contact.success":"Message sent — we'll be in touch within one business day.",
     "contact.f.name":"Full Name","contact.f.company":"Company","contact.f.email":"Work Email","contact.f.service":"What can we help with?",
     "contact.f.s0":"Select a service...","contact.f.s1":"AppSec & Code Audit","contact.f.s2":"DevSecOps Pipeline Integration","contact.f.s3":"Network & Cloud Security","contact.f.s4":"Red Teaming / VAPT","contact.f.s5":"GRC & Compliance","contact.f.s6":"Continuous Monitoring (vSOC)","contact.f.s7":"Physical Security Equipment","contact.f.s8":"Security Awareness Training","contact.f.s9":"Fractional CISO","contact.f.s10":"Other / Not sure yet",
-    "contact.f.message":"Tell us about your situation","contact.f.submit":"Send Message","contact.f.note":"We respond within one business day."
+    "contact.f.message":"Tell us about your situation","contact.f.submit":"Send Message","contact.f.note":"We respond within one business day.",
+    "learn.eyebrow":"Security Best Practices","learn.h2":"What good security looks like, across every layer",
+    "learn.sub":"Practical, engineering-first guidance for businesses and technical teams — no vendor lock-in, no scare tactics.",
+    "learn.tab.code":"Code Security","learn.tab.devsecops":"DevSecOps","learn.tab.network":"Network",
+    "learn.tab.cloud":"Cloud","learn.tab.compliance":"Compliance","learn.tab.physical":"Physical Security","learn.tab.awareness":"Awareness",
+    "lp.svc.appsec":"AppSec & Code Audit","lp.svc.devsecops":"DevSecOps","lp.svc.network":"Network & Cloud","lp.svc.vsoc":"Continuous Monitoring","lp.svc.grc":"GRC & Compliance","lp.svc.physical":"Physical Security","lp.svc.training":"Security Training",
+    "lp.c1.t":"Never store secrets in code","lp.c1.b":"API keys, database passwords, and certificates hardcoded in source files are the single most common cause of credential leaks. Use environment variables and a secrets manager — every cloud provider offers one.",
+    "lp.c2.t":"Scan dependencies before merging","lp.c2.b":"Your application is as vulnerable as its weakest library. Automated SCA flags known CVEs in open-source packages before they reach production, not after a breach.",
+    "lp.c3.t":"Validate input at every boundary","lp.c3.b":"Never trust data from users, APIs, or external services. Validate length, type, format, and range at every entry point. Injection flaws are always the result of trusting unvalidated input.",
+    "lp.c4.t":"Use parameterized queries, always","lp.c4.b":"String-concatenated SQL is one of the oldest known vulnerabilities and still among the most exploited. Parameterized queries eliminate the entire class of SQL injection — there is no acceptable excuse for not using them.",
+    "lp.c5.t":"Security-review authentication logic manually","lp.c5.b":"Automated scanners miss business-logic flaws in login, session management, and password-reset flows. A human engineer must review these flows before launch.",
+    "lp.c6.t":"Keep a Software Bill of Materials","lp.c6.b":"An SBOM is an inventory of every library your software contains. When a zero-day like Log4Shell surfaces, organizations with an SBOM know within minutes whether they're exposed. Those without one spend weeks guessing.",
+    "lp.d1.t":"Run security checks on every commit","lp.d1.b":"Security testing at the end of a release cycle finds flaws when they're expensive to fix. A SAST gate on every pull request finds them when a developer is still in context and the fix takes minutes, not days.",
+    "lp.d2.t":"Fail builds on critical findings","lp.d2.b":"A scanner that generates a report nobody reads is theater. Blocking deployments automatically on verified critical findings ensures security has teeth — configure it with exception handling so legitimate urgency doesn't bypass the gate.",
+    "lp.d3.t":"Scan infrastructure-as-code before apply","lp.d3.b":"Terraform and CloudFormation misconfigurations are one of the top cloud breach vectors. Tools like Checkov catch open S3 buckets, missing encryption, and excessive IAM permissions before they're ever provisioned.",
+    "lp.d4.t":"Sign and verify release artifacts","lp.d4.b":"Supply-chain attacks insert malicious code between build and deploy. Signing artifacts with Sigstore/Cosign and verifying at deployment ensures that what you built is exactly what you shipped.",
+    "lp.d5.t":"Rotate credentials on a schedule","lp.d5.b":"Credentials that never rotate are credentials that inevitably leak. Automate rotation for database passwords, API keys, and service accounts — and revoke the previous value immediately.",
+    "lp.d6.t":"Track MTTR alongside velocity","lp.d6.b":"Mean-time-to-remediate is a security KPI as meaningful as deployment frequency. Teams that measure it fix vulnerabilities 3–5× faster than those that don't.",
+    "lp.n1.t":"Segment your network by risk level","lp.n1.b":"Payment systems, production servers, and employee laptops should never share a flat network. Segmentation limits blast radius — a compromised workstation can't reach your database if they're on separate segments.",
+    "lp.n2.t":"Replace VPN-only access with zero-trust","lp.n2.b":"Traditional VPNs grant broad network access once authenticated. ZTNA grants access only to specific applications based on identity, device health, and context — lateral movement becomes structurally much harder.",
+    "lp.n3.t":"Monitor east-west traffic, not just the perimeter","lp.n3.b":"Most breaches involve lateral movement inside the network after an initial foothold. Monitoring internal traffic detects attackers who have already bypassed the perimeter.",
+    "lp.n4.t":"Audit firewall rules quarterly","lp.n4.b":"Firewall rules accumulate over time. Rules added for a temporary project rarely get removed. A quarterly audit removes stale rules and reduces attack surface that nobody is actively defending.",
+    "lp.n5.t":"Enforce MFA on all remote access, no exceptions","lp.n5.b":"Stolen passwords are the most common initial access vector. Multi-factor authentication is the single highest-ROI security control for remote access — it blocks most credential-based attacks even when passwords are fully compromised.",
+    "lp.n6.t":"Test your API endpoints for authorization flaws","lp.n6.b":"Broken Object Level Authorization (BOLA) lets one authenticated user access another user's data by simply changing an ID. It's the most common API vulnerability and requires manual testing by someone thinking like an attacker.",
+    "lp.cl1.t":"Apply least-privilege IAM from day one","lp.cl1.b":"No user, service account, or function should have more permissions than it needs. Overly-broad IAM roles are among the top cloud misconfigurations exploited in breaches.",
+    "lp.cl2.t":"Enable audit logging in every region","lp.cl2.b":"Enable CloudTrail and equivalent services in every region — not just the ones you think you're using — because attackers intentionally spin up resources in quiet regions to avoid detection.",
+    "lp.cl3.t":"Scan IaC before provisioning","lp.cl3.b":"Infrastructure misconfigurations are the #1 cloud breach vector. Running Checkov in CI before terraform apply catches open S3 buckets, unencrypted databases, and open security groups before they're ever created.",
+    "lp.cl4.t":"Encrypt data at rest and in transit","lp.cl4.b":"Use your cloud provider's KMS for encryption at rest on every storage service. Enforce TLS 1.2+ for all data in transit — and revoke support for older protocols explicitly.",
+    "lp.cl5.t":"Audit public-facing storage monthly","lp.cl5.b":"Publicly accessible S3 buckets and Azure Blob containers have exposed sensitive data at virtually every major cloud provider. Run a monthly audit of public access settings as a basic hygiene measure.",
+    "lp.cl6.t":"Harden container images before deployment","lp.cl6.b":"Use minimal base images, run containers as non-root, scan images for CVEs before pushing to a registry, and enforce signed images at deployment.",
+    "lp.gr1.t":"Map controls to frameworks early","lp.gr1.b":"Retrofitting compliance onto a system built without it is 3–5× more expensive than building it in from the start. Understand control requirements before you architect, not during the audit.",
+    "lp.gr2.t":"Automate evidence collection","lp.gr2.b":"Manual evidence gathering does not scale beyond your first audit. Platforms like Vanta and Drata continuously collect evidence and map it to controls automatically.",
+    "lp.gr3.t":"Know your breach notification deadlines","lp.gr3.b":"GDPR, DORA, Nigeria's NDPA, and Kenya's Data Protection Act all mandate breach notification within 72 hours. Missing this deadline is a separate regulatory violation — your incident response plan must include pre-drafted notification templates.",
+    "lp.gr4.t":"Conduct quarterly risk assessments","lp.gr4.b":"Annual risk assessments miss threats that emerged in months two through eleven. A lightweight quarterly review keeps your risk register actionable rather than a document that ages in a folder.",
+    "lp.gr5.t":"Vet your vendors the same way you vet your code","lp.gr5.b":"Under DORA and NIS2, regulated entities are accountable for their ICT third-party providers. A one-time questionnaire is not risk management — it requires ongoing monitoring and contractual obligations.",
+    "lp.gr6.t":"Test your incident response plan before you need it","lp.gr6.b":"A plan that has never been tested is a hypothesis. Run tabletop exercises at least twice a year and update the plan based on what the exercise reveals.",
+    "lp.ph1.t":"Change default credentials at installation","lp.ph1.b":"IP cameras and access controllers ship with default passwords that are publicly documented. Leaving them in place is the physical-security equivalent of leaving your door unlocked — and these devices are internet-reachable.",
+    "lp.ph2.t":"Patch physical security firmware","lp.ph2.b":"Cameras and access controllers run embedded operating systems with real CVEs that go unpatched for years. Treat physical security devices the same way you treat servers — patch on a defined schedule, not only when something breaks.",
+    "lp.ph3.t":"Isolate physical security from corporate IT","lp.ph3.b":"Your IP camera network should not share a subnet with your corporate laptops. A compromised camera on a flat network can pivot into your file servers. Place physical security devices on a dedicated, firewalled VLAN.",
+    "lp.ph4.t":"Log and review physical access","lp.ph4.b":"Access control systems generate detailed logs of who entered which door, when. Review server-room access logs monthly — unusual after-hours access or repeated failed attempts are early indicators of insider threat or reconnaissance.",
+    "lp.ph5.t":"Use multi-factor access for sensitive areas","lp.ph5.b":"A single access card can be cloned or stolen. Server rooms and data centers should require a second factor — PIN, biometric, or time restriction — so possessing a card alone is not sufficient for entry.",
+    "lp.ph6.t":"Correlate physical and digital alerts","lp.ph6.b":"An after-hours door access followed by an unusual login from the same user is more meaningful than either alert alone. Integrating physical access logs with your SIEM catches attack patterns that siloed monitoring misses entirely.",
+    "lp.aw1.t":"Train before the breach, not after","lp.aw1.b":"Security awareness training delivered reactively — after a phishing attack — reaches people who are already demoralized. Build training into onboarding so good habits form before they're tested by a real attack.",
+    "lp.aw2.t":"Run realistic phishing simulations","lp.aw2.b":"Real phishing emails are tailored and convincing. Use sector-specific scenarios — fake vendor invoices, fake HR policy updates — and measure both click rates and reporting rates.",
+    "lp.aw3.t":"Build a no-blame reporting culture","lp.aw3.b":"Employees who fear punishment for clicking a phishing link don't report it — and a breach that isn't reported isn't contained. Reinforce that reporting is the right behavior, not an admission of failure.",
+    "lp.aw4.t":"Brief executives separately","lp.aw4.b":"Executives are the highest-value targets for BEC, spear-phishing, and deep-fake voice fraud. Run dedicated briefings that walk through real attack scenarios targeting their role and communication patterns.",
+    "lp.aw5.t":"Teach developers secure coding, not just awareness","lp.aw5.b":"Generic phishing training is not what developers need. Engineers benefit from hands-on secure coding bootcamps — OWASP Top 10, secrets management, dependency hygiene — in the context of their actual stack.",
+    "lp.aw6.t":"Document training for your auditors","lp.aw6.b":"SOC 2, PCI-DSS, HIPAA, and ISO 27001 all require documented security awareness training. Maintain completion records and assessment results — auditors ask for evidence, not assurances."
   },
   fr: {
-    "nav.services":"Services","nav.industries":"Secteurs","nav.work":"Travaux","nav.insights":"Publications","nav.contact":"Contact",
+    "nav.services":"Services","nav.industries":"Secteurs","nav.work":"Travaux","nav.insights":"Publications","nav.learn":"Bonnes pratiques","nav.contact":"Contact",
     "hero.eyebrow":"Une sécurité conçue par des développeurs, pour des développeurs",
     "hero.h1":"Où le code<br>rencontre la <em>conviction.</em>",
     "hero.lede":"Nous ne remettons pas un simple rapport de constats. Nous intervenons directement dans la pull request, le pipeline et la revue d'architecture — en corrigeant les failles à la source, dans chaque secteur réglementé que nous servons.",
@@ -1112,7 +1311,54 @@ const COPY = {
     "contact.success":"Message envoy\u00e9 — nous vous r\u00e9pondrons dans un d\u00e9lai d'un jour ouvrable.",
     "contact.f.name":"Nom complet","contact.f.company":"Entreprise","contact.f.email":"Email professionnel","contact.f.service":"Comment pouvons-nous vous aider ?",
     "contact.f.s0":"S\u00e9lectionner un service...","contact.f.s1":"AppSec et audit de code","contact.f.s2":"Int\u00e9gration DevSecOps au pipeline","contact.f.s3":"S\u00e9curit\u00e9 r\u00e9seau et cloud","contact.f.s4":"\u00c9quipe rouge / VAPT","contact.f.s5":"GRC et conformit\u00e9","contact.f.s6":"Surveillance continue (vSOC)","contact.f.s7":"\u00c9quipements de s\u00e9curit\u00e9 physique","contact.f.s8":"Formation \u00e0 la sensibilisation","contact.f.s9":"RSSI \u00e0 temps partag\u00e9","contact.f.s10":"Autre / Pas encore s\u00fbr",
-    "contact.f.message":"D\u00e9crivez votre situation","contact.f.submit":"Envoyer le message","contact.f.note":"Nous r\u00e9pondons dans un d\u00e9lai d'un jour ouvrable."
+    "contact.f.message":"D\u00e9crivez votre situation","contact.f.submit":"Envoyer le message","contact.f.note":"Nous r\u00e9pondons dans un d\u00e9lai d'un jour ouvrable.",
+    "learn.eyebrow":"Bonnes pratiques de s\u00e9curit\u00e9","learn.h2":"\u00c0 quoi ressemble une bonne s\u00e9curit\u00e9, \u00e0 chaque couche",
+    "learn.sub":"Des conseils pratiques et orient\u00e9s ing\u00e9nierie pour les entreprises et les \u00e9quipes techniques \u2014 sans enfermement propri\u00e9taire, sans discours alarmiste.",
+    "learn.tab.code":"S\u00e9curit\u00e9 du code","learn.tab.devsecops":"DevSecOps","learn.tab.network":"R\u00e9seau",
+    "learn.tab.cloud":"Cloud","learn.tab.compliance":"Conformit\u00e9","learn.tab.physical":"S\u00e9curit\u00e9 physique","learn.tab.awareness":"Sensibilisation",
+    "lp.svc.appsec":"AppSec et audit de code","lp.svc.devsecops":"DevSecOps","lp.svc.network":"R\u00e9seau et cloud","lp.svc.vsoc":"Surveillance continue","lp.svc.grc":"GRC et conformit\u00e9","lp.svc.physical":"S\u00e9curit\u00e9 physique","lp.svc.training":"Formation s\u00e9curit\u00e9",
+    "lp.c1.t":"Ne jamais stocker de secrets dans le code","lp.c1.b":"Les cl\u00e9s API, mots de passe et certificats cod\u00e9s en dur dans le code source sont la cause la plus fr\u00e9quente de fuite d\u2019identifiants. Utilisez des variables d\u2019environnement et un gestionnaire de secrets.",
+    "lp.c2.t":"Analyser les d\u00e9pendances avant de fusionner","lp.c2.b":"Votre application est aussi vuln\u00e9rable que sa biblioth\u00e8que la plus faible. L\u2019analyse automatis\u00e9e (SCA) signale les CVE connus dans les paquets open source avant qu\u2019ils n\u2019atteignent la production.",
+    "lp.c3.t":"Valider les entr\u00e9es \u00e0 chaque fronti\u00e8re","lp.c3.b":"Ne faites jamais confiance aux donn\u00e9es provenant des utilisateurs, des API ou de services externes. Validez longueur, type, format et plage \u00e0 chaque point d\u2019entr\u00e9e. Les failles d\u2019injection r\u00e9sultent toujours de donn\u00e9es non valid\u00e9es.",
+    "lp.c4.t":"Utiliser des requ\u00eates param\u00e9tr\u00e9es, toujours","lp.c4.b":"Le SQL construit par concat\u00e9nation est l\u2019une des vuln\u00e9rabilit\u00e9s les plus anciennes et toujours parmi les plus exploit\u00e9es. Les requ\u00eates param\u00e9tr\u00e9es \u00e9liminent toute la classe des injections SQL.",
+    "lp.c5.t":"Revue manuelle de la logique d\u2019authentification","lp.c5.b":"Les scanners automatis\u00e9s ratent les failles de logique m\u00e9tier dans les flux de connexion, de session et de r\u00e9initialisation de mot de passe. Un ing\u00e9nieur humain doit passer en revue ces flux avant le lancement.",
+    "lp.c6.t":"Maintenir une nomenclature logicielle (SBOM)","lp.c6.b":"Un SBOM est un inventaire de toutes les biblioth\u00e8ques que votre logiciel contient. Lors d\u2019une zero-day comme Log4Shell, les organisations disposant d\u2019un SBOM savent en quelques minutes si elles sont expos\u00e9es.",
+    "lp.d1.t":"Ex\u00e9cuter les contr\u00f4les de s\u00e9curit\u00e9 \u00e0 chaque commit","lp.d1.b":"Les tests de s\u00e9curit\u00e9 en fin de cycle d\u00e9tectent les failles au moment le plus co\u00fbteux. Un contr\u00f4le SAST sur chaque pull request les d\u00e9tecte quand le d\u00e9veloppeur est encore en contexte et que la correction prend des minutes.",
+    "lp.d2.t":"Bloquer les builds sur les constats critiques","lp.d2.b":"Un scanner qui g\u00e9n\u00e8re un rapport que personne ne lit est du th\u00e9\u00e2tre. Bloquer les d\u00e9ploiements sur les constats critiques v\u00e9rifi\u00e9s donne du poids \u00e0 la s\u00e9curit\u00e9.",
+    "lp.d3.t":"Analyser l\u2019IaC avant l\u2019application","lp.d3.b":"Les mauvaises configurations Terraform sont l\u2019un des principaux vecteurs de violation cloud. Des outils comme Checkov d\u00e9tectent les buckets S3 ouverts et les IAM excessives avant qu\u2019elles ne soient provisonn\u00e9es.",
+    "lp.d4.t":"Signer et v\u00e9rifier les artefacts de version","lp.d4.b":"Les attaques contre la cha\u00eene d\u2019approvisionnement ins\u00e8rent du code malveillant entre la compilation et le d\u00e9ploiement. La signature des artefacts avec Sigstore/Cosign garantit l\u2019int\u00e9grit\u00e9 de ce qui est livr\u00e9.",
+    "lp.d5.t":"Faire tourner les identifiants selon un calendrier","lp.d5.b":"Les identifiants qui ne tournent jamais finissent par fuiter. Automatisez la rotation des mots de passe, cl\u00e9s API et comptes de service \u2014 et r\u00e9voquez imm\u00e9diatement la valeur pr\u00e9c\u00e9dente.",
+    "lp.d6.t":"Suivre le MTTR au m\u00eame titre que la v\u00e9locit\u00e9","lp.d6.b":"Le d\u00e9lai moyen de correction est un indicateur aussi significatif que la fr\u00e9quence de d\u00e9ploiement. Les \u00e9quipes qui le mesurent corrigent les vuln\u00e9rabilit\u00e9s 3 \u00e0 5 fois plus vite.",
+    "lp.n1.t":"Segmenter le r\u00e9seau par niveau de risque","lp.n1.b":"Les syst\u00e8mes de paiement, les serveurs de production et les postes de travail ne devraient jamais partager un r\u00e9seau plat. La segmentation limite le rayon d\u2019action d\u2019un \u00e9quipement compromis.",
+    "lp.n2.t":"Remplacer l\u2019acc\u00e8s VPN seul par le z\u00e9ro confiance","lp.n2.b":"Les VPN accordent un acc\u00e8s r\u00e9seau large une fois authentifi\u00e9. Le ZTNA n\u2019accorde l\u2019acc\u00e8s qu\u2019\u00e0 des applications sp\u00e9cifiques selon l\u2019identit\u00e9 et le contexte \u2014 le mouvement lat\u00e9ral devient structurellement beaucoup plus difficile.",
+    "lp.n3.t":"Surveiller le trafic est-ouest, pas seulement le p\u00e9rim\u00e8tre","lp.n3.b":"La plupart des violations impliquent un d\u00e9placement lat\u00e9ral \u00e0 l\u2019int\u00e9rieur du r\u00e9seau. La surveillance du trafic interne d\u00e9tecte les attaquants qui ont d\u00e9j\u00e0 contourner le p\u00e9rim\u00e8tre.",
+    "lp.n4.t":"Auditer les r\u00e8gles de pare-feu chaque trimestre","lp.n4.b":"Les r\u00e8gles de pare-feu s\u2019accumulent. Les r\u00e8gles ajout\u00e9es pour un projet temporaire ne sont que rarement supprim\u00e9es. Un audit trimestriel \u00e9limine les r\u00e8gles obsol\u00e8tes et r\u00e9duit la surface d\u2019attaque.",
+    "lp.n5.t":"Imposer le MFA sur tous les acc\u00e8s distants, sans exception","lp.n5.b":"Les mots de passe vol\u00e9s sont le vecteur d\u2019acc\u00e8s initial le plus fr\u00e9quent. Le MFA est le contr\u00f4le au meilleur rapport co\u00fbt-efficacit\u00e9 \u2014 il bloque la grande majorit\u00e9 des attaques par identifiants.",
+    "lp.n6.t":"Tester les API pour les failles d\u2019autorisation","lp.n6.b":"Le BOLA permet \u00e0 un utilisateur authentifi\u00e9 d\u2019acc\u00e9der aux donn\u00e9es d\u2019un autre en changeant simplement un identifiant. C\u2019est la vuln\u00e9rabilit\u00e9 API la plus fr\u00e9quente et elle n\u00e9cessite des tests manuels.",
+    "lp.cl1.t":"Appliquer le moindre privil\u00e8ge IAM d\u00e8s le d\u00e9part","lp.cl1.b":"Aucun utilisateur ou compte de service ne devrait avoir plus de permissions que n\u00e9cessaire. Les r\u00f4les IAM trop larges sont parmi les mauvaises configurations cloud les plus exploit\u00e9es.",
+    "lp.cl2.t":"Activer les journaux d\u2019audit dans chaque r\u00e9gion","lp.cl2.b":"Activez CloudTrail dans chaque r\u00e9gion \u2014 pas seulement celles que vous pensez utiliser \u2014 car les attaquants provisionnent intentionnellement des ressources dans des r\u00e9gions peu surveill\u00e9es.",
+    "lp.cl3.t":"Analyser l\u2019IaC avant le provisionnement","lp.cl3.b":"Les mauvaises configurations d\u2019infrastructure sont le premier vecteur de violation cloud. Checkov dans le CI avant terraform apply d\u00e9tecte les buckets ouverts et les bases non chiffr\u00e9es.",
+    "lp.cl4.t":"Chiffrer les donn\u00e9es au repos et en transit","lp.cl4.b":"Utilisez le KMS de votre fournisseur pour le chiffrement au repos. Imposez TLS 1.2+ pour toutes les donn\u00e9es en transit et r\u00e9voquez explicitement les protocoles anciens.",
+    "lp.cl5.t":"Auditer le stockage public chaque mois","lp.cl5.b":"Les buckets S3 publics ont expos\u00e9 des donn\u00e9es sensibles chez pratiquement tous les grands fournisseurs cloud. Ex\u00e9cutez un audit mensuel des param\u00e8tres d\u2019acc\u00e8s public.",
+    "lp.cl6.t":"Durcir les images de conteneurs avant le d\u00e9ploiement","lp.cl6.b":"Utilisez des images de base minimales, ex\u00e9cutez les conteneurs en tant que non-root, analysez les images pour d\u00e9tecter les CVE avant de les publier dans un registre.",
+    "lp.gr1.t":"Cartographier les contr\u00f4les sur les r\u00e9f\u00e9rentiels d\u00e8s le d\u00e9but","lp.gr1.b":"Ajouter la conformit\u00e9 a posteriori co\u00fbte 3 \u00e0 5 fois plus cher. Comprenez les exigences de contr\u00f4le avant l\u2019architecture, pas pendant l\u2019audit.",
+    "lp.gr2.t":"Automatiser la collecte de preuves","lp.gr2.b":"La collecte manuelle ne passe pas \u00e0 l\u2019\u00e9chelle. Des plateformes comme Vanta et Drata collectent les preuves en continu et les associent automatiquement aux contr\u00f4les.",
+    "lp.gr3.t":"Conna\u00eetre les d\u00e9lais de notification de violation","lp.gr3.b":"Le RGPD, DORA, la NDPA nig\u00e9riane et la loi kenyane imposent une notification dans les 72 heures. Manquer ce d\u00e9lai constitue une violation r\u00e9glementaire distincte \u2014 votre plan doit inclure des mod\u00e8les pr\u00eats \u00e0 l\u2019envoi.",
+    "lp.gr4.t":"Mener des \u00e9valuations des risques chaque trimestre","lp.gr4.b":"Les \u00e9valuations annuelles ratent les menaces apparues entre les mois deux et onze. Une revue trimestrielle maintient votre registre des risques exploitable.",
+    "lp.gr5.t":"\u00c9valuer vos fournisseurs comme vous \u00e9valuez votre code","lp.gr5.b":"Sous DORA et NIS2, les entit\u00e9s r\u00e9glement\u00e9es sont responsables de leurs prestataires TIC tiers. Un questionnaire ponctuel ne constitue pas une gestion du risque fournisseur.",
+    "lp.gr6.t":"Tester votre plan de r\u00e9ponse avant d\u2019en avoir besoin","lp.gr6.b":"Un plan qui n\u2019a jamais \u00e9t\u00e9 test\u00e9 est une hypoth\u00e8se. Organisez des exercices de simulation au moins deux fois par an et mettez \u00e0 jour le plan \u00e0 partir de ce que l\u2019exercice r\u00e9v\u00e8le.",
+    "lp.ph1.t":"Changer les identifiants par d\u00e9faut \u00e0 l\u2019installation","lp.ph1.b":"Les cam\u00e9ras IP et les contr\u00f4leurs d\u2019acc\u00e8s sont livr\u00e9s avec des mots de passe par d\u00e9faut publiquement document\u00e9s. Les laisser en place revient \u00e0 laisser votre porte ouverte \u2014 et ces appareils sont accessibles depuis Internet.",
+    "lp.ph2.t":"Appliquer les correctifs de firmware des \u00e9quipements physiques","lp.ph2.b":"Les cam\u00e9ras et les contr\u00f4leurs ex\u00e9cutent des syst\u00e8mes embarqu\u00e9s avec de vraies CVE non corrig\u00e9es pendant des ann\u00e9es. Traitez ces \u00e9quipements comme des serveurs et appliquez des correctifs selon un calendrier d\u00e9fini.",
+    "lp.ph3.t":"Isoler la s\u00e9curit\u00e9 physique de l\u2019IT d\u2019entreprise","lp.ph3.b":"Votre r\u00e9seau de cam\u00e9ras ne devrait pas partager un sous-r\u00e9seau avec les postes de travail. Une cam\u00e9ra compromise sur un r\u00e9seau plat peut servir de pivot vers vos serveurs. Placez ces \u00e9quipements sur un VLAN d\u00e9di\u00e9 prot\u00e9g\u00e9 par pare-feu.",
+    "lp.ph4.t":"Journaliser et passer en revue les acc\u00e8s physiques","lp.ph4.b":"Les syst\u00e8mes de contr\u00f4le d\u2019acc\u00e8s g\u00e9n\u00e8rent des journaux d\u00e9taill\u00e9s. Examinez les acc\u00e8s aux salles serveurs chaque mois \u2014 des acc\u00e8s inhabituels en dehors des heures de bureau sont des indicateurs pr\u00e9coces de menace interne.",
+    "lp.ph5.t":"Utiliser un contr\u00f4le d\u2019acc\u00e8s multifacteur pour les zones sensibles","lp.ph5.b":"Une seule carte d\u2019acc\u00e8s peut \u00eatre clon\u00e9e ou vol\u00e9e. Les salles serveurs doivent exiger un second facteur \u2014 code PIN, biom\u00e9trie ou restriction horaire \u2014 de sorte que la possession de la carte seule ne soit pas suffisante.",
+    "lp.ph6.t":"Corr\u00e9ler les alertes physiques et num\u00e9riques","lp.ph6.b":"Un acc\u00e8s \u00e0 une porte en dehors des heures suivi d\u2019une connexion inhabituelle est plus significatif que chaque alerte s\u00e9par\u00e9ment. Int\u00e9grer les journaux physiques \u00e0 votre SIEM permet cette corr\u00e9lation.",
+    "lp.aw1.t":"Former avant la violation, pas apr\u00e8s","lp.aw1.b":"La formation r\u00e9active \u2014 apr\u00e8s une attaque \u2014 atteint des personnes d\u00e9j\u00e0 d\u00e9moralis\u00e9es. Int\u00e9grez la formation \u00e0 l\u2019int\u00e9gration pour que les bonnes habitudes se forment avant d\u2019\u00eatre mises \u00e0 l\u2019\u00e9preuve.",
+    "lp.aw2.t":"Organiser des simulations de phishing r\u00e9alistes","lp.aw2.b":"Les vrais e-mails de phishing sont cibl\u00e9s et convaincants. Utilisez des sc\u00e9narios propres au secteur et mesurez \u00e0 la fois les taux de clic et les taux de signalement.",
+    "lp.aw3.t":"Instaurer une culture de signalement sans blame","lp.aw3.b":"Les employ\u00e9s qui craignent une punition ne signalent pas \u2014 et une violation non signal\u00e9e n\u2019est pas contenue. Renforcez l\u2019id\u00e9e que signaler est le bon comportement.",
+    "lp.aw4.t":"Briefer les dirigeants s\u00e9par\u00e9ment","lp.aw4.b":"Les dirigeants sont les cibles les plus pr\u00e9cieuses pour la compromission d\u2019e-mail professionnel et le spear-phishing. Organisez des briefings d\u00e9di\u00e9s portant sur des sc\u00e9narios ciblant leur r\u00f4le.",
+    "lp.aw5.t":"Former les d\u00e9veloppeurs au codage s\u00e9curis\u00e9","lp.aw5.b":"La formation g\u00e9n\u00e9rique au phishing n\u2019est pas ce dont les d\u00e9veloppeurs ont besoin. Les ing\u00e9nieurs b\u00e9n\u00e9ficient de bootcamps pratiques \u2014 OWASP Top 10, gestion des secrets \u2014 dans le contexte de leur pile r\u00e9elle.",
+    "lp.aw6.t":"Documenter la formation pour vos auditeurs","lp.aw6.b":"SOC 2, PCI-DSS, HIPAA et ISO 27001 exigent une formation document\u00e9e. Conservez les attestations de compl\u00e9tion et les r\u00e9sultats d\u2019\u00e9valuation \u2014 les auditeurs demandent des preuves, pas des assurances."
   }
 };
 
@@ -1144,6 +1390,20 @@ function handleSubmit(){
   document.getElementById('contactForm').style.display = 'none';
   document.getElementById('formSuccess').style.display = 'block';
 }
+
+function initTabs(){
+  var tabs = document.querySelectorAll('.learn-tab');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      document.querySelectorAll('.learn-panel').forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      var panel = document.getElementById('panel-' + tab.getAttribute('data-panel'));
+      if(panel) panel.classList.add('active');
+    });
+  });
+}
+initTabs();
 
 applyLang('en');
 </script>
