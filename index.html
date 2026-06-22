@@ -359,6 +359,28 @@
   }
   .process-step p{ font-size:13.5px; line-height:1.6; color:#aeaeb4; margin:0; }
 
+  /* ---------- industries ---------- */
+  .industries{ background:var(--ink); padding:64px 0; }
+  .industry-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
+    background:var(--ink-line); border:1px solid var(--ink-line); border-radius:8px; overflow:hidden;
+  }
+  @media (min-width:760px){ .industry-grid{ grid-template-columns:repeat(3,1fr); } }
+  @media (min-width:1060px){ .industry-grid{ grid-template-columns:repeat(5,1fr); } }
+  .industry-card{
+    background:var(--carbon); padding:22px 20px 24px;
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .industry-icon{
+    font-family:var(--font-mono); font-size:11px; font-weight:600;
+    color:var(--red-bright); letter-spacing:0.08em;
+  }
+  .industry-card h4{
+    font-family:var(--font-display); font-weight:600; font-size:16px;
+    color:#fff; margin:0; line-height:1.3;
+  }
+  .industry-card p{ font-size:12.5px; line-height:1.5; color:#aeaeb4; margin:0; }
+
   /* ---------- faq ---------- */
   .faq{ background:var(--paper); }
   .faq-list{ border-top:1px solid #e3e1da; }
@@ -614,6 +636,43 @@
   </div>
 </section>
 
+<section class="industries on-dark" id="industries">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="section-eyebrow" data-i18n="industries.eyebrow">Industries Served</p>
+      <h2 data-i18n="industries.h2">Proven in fintech. Built for every regulated industry.</h2>
+      <p class="section-sub" data-i18n="industries.sub">The same engineering-embedded model, applied wherever organizations ship production software and handle sensitive data.</p>
+    </div>
+    <div class="industry-grid">
+      <div class="industry-card">
+        <span class="industry-icon" data-i18n="industries.i1.tag">Flagship</span>
+        <h4 data-i18n="industries.i1.title">Financial Services & Fintech</h4>
+        <p data-i18n="industries.i1.body">Neo-banks, DeFi, commercial banks, payment processors, and financial regulators.</p>
+      </div>
+      <div class="industry-card">
+        <span class="industry-icon" data-i18n="industries.i2.tag">Telecom</span>
+        <h4 data-i18n="industries.i2.title">Telecom & Mobile Operators</h4>
+        <p data-i18n="industries.i2.body">Mobile money, USSD billing, and network infrastructure security for carriers and MVNOs.</p>
+      </div>
+      <div class="industry-card">
+        <span class="industry-icon" data-i18n="industries.i3.tag">Healthcare</span>
+        <h4 data-i18n="industries.i3.title">Healthcare & Healthtech</h4>
+        <p data-i18n="industries.i3.body">Patient data, claims systems, and connected medical software — HIPAA, HITECH, and NIS2.</p>
+      </div>
+      <div class="industry-card">
+        <span class="industry-icon" data-i18n="industries.i4.tag">E-Commerce</span>
+        <h4 data-i18n="industries.i4.title">E-Commerce & Retail Tech</h4>
+        <p data-i18n="industries.i4.body">Checkout flows, payment integrations, and customer-data security at scale.</p>
+      </div>
+      <div class="industry-card">
+        <span class="industry-icon" data-i18n="industries.i5.tag">Enterprise</span>
+        <h4 data-i18n="industries.i5.title">Enterprise Technology & SaaS</h4>
+        <p data-i18n="industries.i5.body">Any team shipping production software through a real CI/CD pipeline — SOC 2, ISO 27001.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="callout on-dark">
   <div class="wrap">
     <div class="callout-box reveal">
@@ -675,7 +734,7 @@ const COPY = {
     "nav.services":"Services","nav.regions":"Regions","nav.why":"Why Us","nav.contact":"Contact",
     "hero.eyebrow":"Security built by developers, for developers",
     "hero.h1":"Where Code<br>Meets <em>Conviction.</em>",
-    "hero.lede":"We don't hand back a findings PDF. We sit inside the pull request, the pipeline, and the architecture review — fixing security defects at the source for fintech platforms, neo-banks, and the banks and regulators that oversee them.",
+    "hero.lede":"We don't hand back a findings PDF. We sit inside the pull request, the pipeline, and the architecture review — fixing security defects at the source for fintech platforms, telecom carriers, healthcare systems, e-commerce companies, and the regulators that oversee them.",
     "hero.cta1":"Book a Pilot Review","hero.cta2":"See the Services",
     "hero.term.comment1":"# hardcoded",
     "hero.term.caption":"A real fix, not just a finding.",
@@ -691,12 +750,12 @@ const COPY = {
     "pillars.p3.title":"API & Transaction-Layer Security",
     "pillars.p3.body":"Deep expertise in REST, GraphQL, and ISO 20022/SWIFT messaging — built to catch account takeover and ledger manipulation before they happen.",
     "services.eyebrow":"Full Portfolio","services.h2":"Security, organized around how software actually gets built",
-    "services.sub":"Seven service lines spanning the codebase, the pipeline, the transaction layer, and — for clients with branches, data centers, and ATM networks — the physical layer too.",
+    "services.sub":"Seven service lines spanning the codebase, the pipeline, the transaction layer, and — for clients with branches, data centers, hospitals, and cell sites — the physical layer too.",
     "services.s1.tag":"2.1 — AppSec","services.s1.title":"Application Security & Code Audit","services.s1.body":"Manual and automated source review across the full SDLC, from SAST to secrets scanning.",
     "services.s2.tag":"2.2 — DevSecOps","services.s2.title":"DevSecOps-as-a-Service","services.s2.body":"Security embedded as code directly inside your existing CI/CD pipelines.",
     "services.s3.tag":"2.3 — Cloud & API","services.s3.title":"API & Cloud-Native Security","services.s3.body":"Hardening for Kubernetes, microservices, and cloud-native fintech infrastructure.",
     "services.s4.tag":"2.4 — Offensive Security","services.s4.title":"Red Teaming","services.s4.body":"Adversarial testing built for payment systems and DeFi smart contracts.",
-    "services.s5.tag":"2.5 — GRC","services.s5.title":"Fintech GRC & Regulatory Compliance","services.s5.body":"PCI-DSS, SOC 2, DORA, NIS2, and African data-protection frameworks.",
+    "services.s5.tag":"2.5 — GRC","services.s5.title":"GRC & Regulatory Compliance","services.s5.body":"PCI-DSS, SOC 2, HIPAA, DORA, NIS2, ISO 27001, and African data-protection frameworks.",
     "services.s6.tag":"2.6 — vSOC","services.s6.title":"Continuous Threat Monitoring","services.s6.body":"24/7 transaction-layer monitoring tuned to real fraud patterns.",
     "services.s7.tag":"2.7 — Physical Security","services.s7.title":"Equipment Sales, Installation & Managed Services","services.s7.body":"IP video, access control, and alarm systems for branches and data centers — sold, installed, and kept patched, with firmware treated like any other endpoint.",
     "regions.eyebrow":"Global Footprint","regions.h2":"Operating where modern finance is being built",
@@ -705,10 +764,17 @@ const COPY = {
     "regions.eu.title":"Europe","regions.eu.body":"A regulatory-depth entry wedge, ready for the world's most mature financial-cyber regime.",
     "regions.af.title":"Africa","regions.af.body":"Mobile-money and USSD-channel security for the continent's fastest-growing fintech markets.",
     "callout.quote":"Tooling vendors sell software your engineers still have to fix. Auditors disappear between assessments. We stay embedded — and we ship the patch.",
-    "callout.attr":"— Why fintech & banking teams choose Codeward over a platform, a Big 4 audit, or a guard company alone",
+    "callout.attr":"— Why fintech, telecom, healthcare & e-commerce teams choose Codeward over a platform, a Big 4 audit, or a guard company alone",
     "footer.cta":"Ready to ship secure, not just compliant?","footer.btn":"Talk to the Team",
     "footer.tagline":"Codeward Security — Where Code Meets Conviction.",
     "footer.bottom":"© 2026 Codeward Security. Operating across North America, Europe & Africa.",
+    "industries.eyebrow":"Industries Served","industries.h2":"Proven in fintech. Built for every regulated industry.",
+    "industries.sub":"The same engineering-embedded model, applied wherever organizations ship production software and handle sensitive data.",
+    "industries.i1.tag":"Flagship","industries.i1.title":"Financial Services & Fintech","industries.i1.body":"Neo-banks, DeFi, commercial banks, payment processors, and financial regulators.",
+    "industries.i2.tag":"Telecom","industries.i2.title":"Telecom & Mobile Operators","industries.i2.body":"Mobile money, USSD billing, and network infrastructure security for carriers and MVNOs.",
+    "industries.i3.tag":"Healthcare","industries.i3.title":"Healthcare & Healthtech","industries.i3.body":"Patient data, claims systems, and connected medical software — HIPAA, HITECH, and NIS2.",
+    "industries.i4.tag":"E-Commerce","industries.i4.title":"E-Commerce & Retail Tech","industries.i4.body":"Checkout flows, payment integrations, and customer-data security at scale.",
+    "industries.i5.tag":"Enterprise","industries.i5.title":"Enterprise Technology & SaaS","industries.i5.body":"Any team shipping production software through a real CI/CD pipeline — SOC 2, ISO 27001.",
     "process.eyebrow":"How We Work","process.h2":"From first pull request to full coverage",
     "process.sub":"A land-and-expand model built around your engineering team's actual pace — not a one-time audit.",
     "process.s1.title":"Pilot Review","process.s1.body":"A scoped AppSec or DevSecOps review on one repository or pipeline. Two to four weeks, fixed scope, real fixes delivered as pull requests — not a PDF.",
@@ -731,7 +797,7 @@ const COPY = {
     "nav.services":"Services","nav.regions":"Régions","nav.why":"Pourquoi nous","nav.contact":"Contact",
     "hero.eyebrow":"Une sécurité conçue par des développeurs, pour des développeurs",
     "hero.h1":"Où le code<br>rencontre la <em>conviction.</em>",
-    "hero.lede":"Nous ne remettons pas un simple rapport de constats. Nous intervenons directement dans la pull request, le pipeline et la revue d'architecture — en corrigeant les failles à la source pour les plateformes fintech, les néo-banques, ainsi que les banques et régulateurs qui les supervisent.",
+    "hero.lede":"Nous ne remettons pas un simple rapport de constats. Nous intervenons directement dans la pull request, le pipeline et la revue d'architecture — en corrigeant les failles à la source pour les plateformes fintech, les opérateurs télécom, les systèmes de santé, les entreprises e-commerce et les régulateurs qui les supervisent.",
     "hero.cta1":"Réserver un audit pilote","hero.cta2":"Voir les services",
     "hero.term.comment1":"# secret en dur",
     "hero.term.caption":"Un vrai correctif, pas seulement un constat.",
@@ -747,12 +813,12 @@ const COPY = {
     "pillars.p3.title":"Sécurité des API et de la couche transactionnelle",
     "pillars.p3.body":"Une expertise approfondie en REST, GraphQL et messagerie ISO 20022/SWIFT — conçue pour détecter la prise de contrôle de comptes et la manipulation de grand livre avant qu'elles ne se produisent.",
     "services.eyebrow":"Portefeuille complet","services.h2":"Une sécurité organisée autour de la manière dont le logiciel est réellement construit",
-    "services.sub":"Sept lignes de service couvrant le code, le pipeline, la couche transactionnelle et, pour les clients disposant d'agences, de centres de données et de distributeurs automatiques, la couche physique également.",
+    "services.sub":"Sept lignes de service couvrant le code, le pipeline, la couche transactionnelle et, pour les clients disposant d'agences, de centres de données, d'hôpitaux et de sites cellulaires, la couche physique également.",
     "services.s1.tag":"2.1 — AppSec","services.s1.title":"Sécurité applicative et audit de code","services.s1.body":"Revue de code manuelle et automatisée sur l'ensemble du cycle de développement, du SAST à la détection de secrets.",
     "services.s2.tag":"2.2 — DevSecOps","services.s2.title":"DevSecOps-as-a-Service","services.s2.body":"Sécurité intégrée comme du code, directement dans votre CI/CD existant.",
     "services.s3.tag":"2.3 — Cloud et API","services.s3.title":"Sécurité des API et du cloud natif","services.s3.body":"Durcissement pour Kubernetes, microservices et infrastructures cloud natives fintech.",
     "services.s4.tag":"2.4 — Sécurité offensive","services.s4.title":"Red Teaming","services.s4.body":"Tests adverses conçus pour les systèmes de paiement et les smart contracts DeFi.",
-    "services.s5.tag":"2.5 — GRC","services.s5.title":"GRC fintech et conformité réglementaire","services.s5.body":"PCI-DSS, SOC 2, DORA, NIS2 et cadres africains de protection des données.",
+    "services.s5.tag":"2.5 — GRC","services.s5.title":"GRC et conformité réglementaire","services.s5.body":"PCI-DSS, SOC 2, HIPAA, DORA, NIS2, ISO 27001 et cadres africains de protection des données.",
     "services.s6.tag":"2.6 — vSOC","services.s6.title":"Surveillance continue des menaces","services.s6.body":"Surveillance 24 h/24 et 7 j/7 de la couche transactionnelle, calibrée sur des schémas de fraude réels.",
     "services.s7.tag":"2.7 — Sécurité physique","services.s7.title":"Vente, installation et services gérés d'équipements","services.s7.body":"Vidéosurveillance IP, contrôle d'accès et alarmes pour agences et centres de données — vendus, installés et maintenus à jour, le firmware étant traité comme tout autre point de terminaison.",
     "regions.eyebrow":"Présence mondiale","regions.h2":"Présents là où la finance moderne se construit",
@@ -761,10 +827,17 @@ const COPY = {
     "regions.eu.title":"Europe","regions.eu.body":"Un point d'entrée fondé sur la profondeur réglementaire, prêt pour le régime financier-cyber le plus mature au monde.",
     "regions.af.title":"Afrique","regions.af.body":"Sécurité du mobile money et des canaux USSD pour les marchés fintech à la croissance la plus rapide du continent.",
     "callout.quote":"Les éditeurs d'outils vendent un logiciel que vos ingénieurs doivent encore corriger. Les auditeurs disparaissent entre deux missions. Nous restons embarqués — et nous livrons le correctif.",
-    "callout.attr":"— Pourquoi les équipes fintech et bancaires choisissent Codeward plutôt qu'une plateforme seule, un audit Big 4 ou un prestataire de gardiennage",
+    "callout.attr":"— Pourquoi les équipes fintech, télécom, santé et e-commerce choisissent Codeward plutôt qu'une plateforme seule, un audit Big 4 ou un prestataire de gardiennage",
     "footer.cta":"Prêt à livrer du code sécurisé, pas seulement conforme ?","footer.btn":"Contacter l'équipe",
     "footer.tagline":"Codeward Security — Où le code rencontre la conviction.",
     "footer.bottom":"© 2026 Codeward Security. Présent en Amérique du Nord, en Europe et en Afrique.",
+    "industries.eyebrow":"Secteurs servis","industries.h2":"Éprouvé en fintech. Conçu pour tous les secteurs réglementés.",
+    "industries.sub":"Le même modèle intégré à l'ingénierie, appliqué partout où des organisations livrent du logiciel en production et traitent des données sensibles.",
+    "industries.i1.tag":"Secteur phare","industries.i1.title":"Services financiers et fintech","industries.i1.body":"Néo-banques, DeFi, banques commerciales, processeurs de paiement et régulateurs financiers.",
+    "industries.i2.tag":"Télécom","industries.i2.title":"Télécom et opérateurs mobiles","industries.i2.body":"Sécurité de l'argent mobile, de la facturation USSD et de l'infrastructure réseau pour opérateurs et MVNO.",
+    "industries.i3.tag":"Santé","industries.i3.title":"Santé et healthtech","industries.i3.body":"Données patients, systèmes de prise en charge et logiciels médicaux connectés — HIPAA, HITECH et NIS2.",
+    "industries.i4.tag":"E-Commerce","industries.i4.title":"E-Commerce et technologies du commerce","industries.i4.body":"Sécurité des parcours de paiement, des intégrations de paiement et des données clients à grande échelle.",
+    "industries.i5.tag":"Entreprise","industries.i5.title":"Technologies d'entreprise et SaaS","industries.i5.body":"Toute équipe livrant du logiciel en production via un véritable pipeline CI/CD — SOC 2, ISO 27001.",
     "process.eyebrow":"Comment nous travaillons","process.h2":"De la première pull request à une couverture complète",
     "process.sub":"Un modèle progressif construit autour du rythme réel de votre équipe d'ingénierie — pas un audit ponctuel.",
     "process.s1.title":"Audit pilote","process.s1.body":"Une revue AppSec ou DevSecOps ciblée sur un dépôt ou un pipeline. Deux à quatre semaines, périmètre fixe, de vrais correctifs livrés sous forme de pull requests — pas un PDF.",
