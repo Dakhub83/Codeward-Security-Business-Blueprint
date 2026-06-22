@@ -419,6 +419,98 @@
     margin-top:18px; letter-spacing:0.02em;
   }
 
+  /* ---------- case studies ---------- */
+  .case-studies{ background:var(--paper-dim); }
+  .cs-grid{
+    display:grid; grid-template-columns:1fr; gap:20px;
+  }
+  @media(min-width:760px){ .cs-grid{ grid-template-columns:repeat(3,1fr); } }
+  .cs-card{
+    background:#fff; border:1px solid #e3e1da; border-radius:8px;
+    padding:26px 24px 28px; position:relative; overflow:hidden;
+  }
+  .cs-card::before{
+    content:""; position:absolute; top:0; left:0;
+    width:3px; height:100%; background:var(--red);
+  }
+  .cs-label{
+    font-family:var(--font-mono); font-size:11px; font-weight:600;
+    letter-spacing:0.08em; color:var(--silver); margin:0 0 12px;
+  }
+  .cs-card h3{ font-family:var(--font-display); font-weight:600; font-size:18px; margin:0 0 10px; }
+  .cs-card p{ font-size:14px; line-height:1.6; color:var(--muted); margin:0 0 16px; }
+  .cs-metrics{ display:flex; flex-wrap:wrap; gap:10px; }
+  .cs-metric{
+    font-family:var(--font-mono); font-size:12px; font-weight:600;
+    background:#fbe9ec; color:var(--red); border-radius:3px; padding:5px 10px;
+  }
+  .cs-coming{
+    font-family:var(--font-mono); font-size:11.5px; color:var(--silver-bright);
+    background:var(--ink); border-radius:3px; padding:4px 10px;
+    display:inline-block; margin-bottom:12px;
+  }
+
+  /* ---------- blog ---------- */
+  .blog{ background:var(--ink); }
+  .blog-grid{
+    display:grid; grid-template-columns:1fr; gap:1px;
+    background:var(--ink-line); border:1px solid var(--ink-line); border-radius:8px; overflow:hidden;
+  }
+  @media(min-width:760px){ .blog-grid{ grid-template-columns:repeat(3,1fr); } }
+  .blog-card{ background:var(--carbon); padding:26px 22px 28px; }
+  .blog-meta{ font-family:var(--font-mono); font-size:11px; color:var(--silver); margin:0 0 12px; letter-spacing:0.04em; }
+  .blog-card h3{ font-family:var(--font-display); font-weight:600; font-size:18px; color:#fff; margin:0 0 10px; line-height:1.3; }
+  .blog-card p{ font-size:13.5px; line-height:1.55; color:#aeaeb4; margin:0; }
+
+  /* ---------- contact form ---------- */
+  .contact-section{ background:var(--paper); }
+  .contact-grid{
+    display:grid; grid-template-columns:1fr; gap:48px; align-items:start;
+  }
+  @media(min-width:900px){ .contact-grid{ grid-template-columns:1fr 1.3fr; } }
+  .contact-copy h2{ margin-bottom:14px; }
+  .contact-copy p{ font-size:15px; line-height:1.65; color:var(--muted); margin:0 0 24px; }
+  .contact-detail{
+    font-family:var(--font-mono); font-size:13px; color:var(--muted);
+    display:flex; align-items:center; gap:10px; margin-bottom:12px;
+  }
+  .contact-detail span{ color:var(--red-bright); }
+  .form-card{
+    background:#fff; border:1px solid #e3e1da; border-radius:8px; padding:32px 28px;
+  }
+  .form-row{ margin-bottom:18px; }
+  .form-row label{
+    display:block; font-family:var(--font-mono); font-size:12px; font-weight:600;
+    letter-spacing:0.04em; color:var(--ink); margin-bottom:7px;
+  }
+  .form-row input, .form-row select, .form-row textarea{
+    width:100%; font-family:var(--font-body); font-size:14.5px;
+    color:var(--ink); background:#fff;
+    border:1px solid #d4d4d4; border-radius:4px;
+    padding:11px 14px; outline:none;
+    transition:border-color .15s ease;
+    box-sizing:border-box;
+  }
+  .form-row textarea{ resize:vertical; min-height:100px; }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus{
+    border-color:var(--red);
+  }
+  .form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media(max-width:520px){ .form-grid{ grid-template-columns:1fr; } }
+  .form-submit{
+    width:100%; font-family:var(--font-mono); font-size:13.5px; font-weight:700;
+    letter-spacing:0.04em; background:var(--red); color:#fff;
+    border:none; border-radius:3px; padding:15px;
+    cursor:pointer; transition:background .15s ease;
+  }
+  .form-submit:hover{ background:var(--red-bright); }
+  .form-note{ font-size:12.5px; color:var(--silver); margin-top:12px; text-align:center; }
+  .form-success{
+    display:none; background:#f0fdf4; border:1px solid #bbf7d0;
+    border-radius:6px; padding:20px; text-align:center;
+    font-family:var(--font-mono); font-size:13px; color:#166534;
+  }
+
   /* ---------- footer ---------- */
   footer{
     background:#0e0e12; color:#fff; padding:72px 0 36px;
@@ -543,9 +635,9 @@
         <p data-i18n="services.s2.body">Security embedded as code directly inside your existing CI/CD pipelines.</p>
       </div>
       <div class="service-card">
-        <p class="service-tag" data-i18n="services.s3.tag">2.3 — Cloud & API</p>
-        <h3 data-i18n="services.s3.title">API & Cloud-Native Security</h3>
-        <p data-i18n="services.s3.body">Hardening for Kubernetes, microservices, and cloud-native fintech infrastructure.</p>
+        <p class="service-tag" data-i18n="services.s3.tag">2.3 — Network, API & Cloud</p>
+        <h3 data-i18n="services.s3.title">Network, API & Cloud-Native Security</h3>
+        <p data-i18n="services.s3.body">Network segmentation, secure remote access, ZTNA, API hardening, and cloud-native infrastructure across AWS, Azure, and GCP.</p>
       </div>
       <div class="service-card">
         <p class="service-tag" data-i18n="services.s4.tag">2.4 — Offensive Security</p>
@@ -566,6 +658,11 @@
         <p class="service-tag" data-i18n="services.s7.tag">2.7 — Physical Security</p>
         <h3 data-i18n="services.s7.title">Equipment Sales, Installation & Managed Services</h3>
         <p data-i18n="services.s7.body">IP video, access control, and alarm systems for branches and data centers — sold, installed, and kept patched, with firmware treated like any other endpoint.</p>
+      </div>
+      <div class="service-card">
+        <p class="service-tag" data-i18n="services.s8.tag">2.8 — Training</p>
+        <h3 data-i18n="services.s8.title">Security Awareness Training</h3>
+        <p data-i18n="services.s8.body">Role-based training, phishing simulations, developer security bootcamps, and security champion programs — written by engineers who've seen real exploits.</p>
       </div>
     </div>
   </div>
@@ -715,12 +812,128 @@
   </div>
 </section>
 
-<footer id="contact">
+<section class="case-studies" id="work">
   <div class="wrap">
-    <div class="footer-top">
-      <h2 data-i18n="footer.cta">Ready to ship secure, not just compliant?</h2>
-      <a href="mailto:hello@codewardsecurity.com" class="btn btn-primary" data-i18n="footer.btn">Talk to the Team</a>
+    <div class="section-head">
+      <p class="section-eyebrow" data-i18n="cs.eyebrow">Client Work</p>
+      <h2 data-i18n="cs.h2">Results, not just reports</h2>
+      <p class="section-sub" data-i18n="cs.sub">Anonymized snapshots from active engagements. Named references available under NDA.</p>
     </div>
+    <div class="cs-grid">
+      <div class="cs-card">
+        <p class="cs-label" data-i18n="cs.c1.label">FINTECH — WEST AFRICA</p>
+        <h3 data-i18n="cs.c1.title">Mobile Payment Platform AppSec Pilot</h3>
+        <p data-i18n="cs.c1.body">Scoped SAST + manual review of a Series B mobile-money API. Hardcoded credentials, BOLA, and three business-logic flaws identified and fixed before launch.</p>
+        <div class="cs-metrics">
+          <span class="cs-metric" data-i18n="cs.c1.m1">14 days to delivery</span>
+          <span class="cs-metric" data-i18n="cs.c1.m2">6 critical findings fixed</span>
+        </div>
+      </div>
+      <div class="cs-card">
+        <p class="cs-label" data-i18n="cs.c2.label">HEALTHTECH — NORTH AMERICA</p>
+        <h3 data-i18n="cs.c2.title">DevSecOps Pipeline Integration</h3>
+        <p data-i18n="cs.c2.body">Embedded security gates into a healthcare SaaS CI/CD pipeline. HIPAA evidence collection automated; developer MTTR dropped by 60%.</p>
+        <div class="cs-metrics">
+          <span class="cs-metric" data-i18n="cs.c2.m1">60% MTTR reduction</span>
+          <span class="cs-metric" data-i18n="cs.c2.m2">HIPAA audit-ready</span>
+        </div>
+      </div>
+      <div class="cs-card">
+        <p class="cs-coming" data-i18n="cs.c3.coming">Coming Soon</p>
+        <p class="cs-label" data-i18n="cs.c3.label">YOUR INDUSTRY HERE</p>
+        <h3 data-i18n="cs.c3.title">First Engagement in Your Vertical</h3>
+        <p data-i18n="cs.c3.body">We're building the reference library. If you're an early client, your anonymized results will appear here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blog on-dark" id="insights">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="section-eyebrow" data-i18n="blog.eyebrow">Insights</p>
+      <h2 data-i18n="blog.h2">From the engineering room floor</h2>
+      <p class="section-sub" data-i18n="blog.sub">Real vulnerability patterns, anonymized. Written by engineers who fixed them, not analysts who catalogued them.</p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <p class="blog-meta" data-i18n="blog.p1.meta">APPSEC — COMING SOON</p>
+        <h3 data-i18n="blog.p1.title">Why Fintech SAST Rules Need Their Own Rule Packs</h3>
+        <p data-i18n="blog.p1.body">Generic SAST misses transaction-logic flaws. Here's how we built Semgrep rules tuned to ledger and payment-rail code.</p>
+      </div>
+      <div class="blog-card">
+        <p class="blog-meta" data-i18n="blog.p2.meta">DEVSECOPS — COMING SOON</p>
+        <h3 data-i18n="blog.p2.title">Security Gates That Don't Slow Your Sprint</h3>
+        <p data-i18n="blog.p2.body">How to instrument a CI/CD pipeline so security findings arrive as PRs, not blocked deploys.</p>
+      </div>
+      <div class="blog-card">
+        <p class="blog-meta" data-i18n="blog.p3.meta">GRC — COMING SOON</p>
+        <h3 data-i18n="blog.p3.title">DORA in Practice: What ICT Third-Party Providers Actually Need to Do</h3>
+        <p data-i18n="blog.p3.body">A technical breakdown of what DORA means for security vendors selling into EU financial entities — including us.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-copy">
+        <p class="section-eyebrow" data-i18n="contact.eyebrow">Get in Touch</p>
+        <h2 data-i18n="contact.h2">Ready to ship secure?</h2>
+        <p data-i18n="contact.body">Tell us what you're working on. We'll come back with a scoped pilot proposal — no generic sales decks, no obligation.</p>
+        <p class="contact-detail"><span>→</span> <span data-i18n="contact.email">hello@codewardsecurity.com</span></p>
+        <p class="contact-detail"><span>→</span> <span data-i18n="contact.regions">North America · Europe · Africa</span></p>
+      </div>
+      <div class="form-card">
+        <div class="form-success" id="formSuccess">
+          <span data-i18n="contact.success">Message sent — we'll be in touch within one business day.</span>
+        </div>
+        <div id="contactForm">
+          <div class="form-grid">
+            <div class="form-row">
+              <label data-i18n="contact.f.name">Full Name</label>
+              <input type="text" id="fname" autocomplete="name">
+            </div>
+            <div class="form-row">
+              <label data-i18n="contact.f.company">Company</label>
+              <input type="text" id="fcompany" autocomplete="organization">
+            </div>
+          </div>
+          <div class="form-row">
+            <label data-i18n="contact.f.email">Work Email</label>
+            <input type="email" id="femail" autocomplete="email">
+          </div>
+          <div class="form-row">
+            <label data-i18n="contact.f.service">What can we help with?</label>
+            <select id="fservice">
+              <option value="" data-i18n="contact.f.s0">Select a service...</option>
+              <option value="appsec" data-i18n="contact.f.s1">AppSec & Code Audit</option>
+              <option value="devsecops" data-i18n="contact.f.s2">DevSecOps Pipeline Integration</option>
+              <option value="network" data-i18n="contact.f.s3">Network & Cloud Security</option>
+              <option value="redteam" data-i18n="contact.f.s4">Red Teaming / VAPT</option>
+              <option value="grc" data-i18n="contact.f.s5">GRC & Compliance</option>
+              <option value="vsoc" data-i18n="contact.f.s6">Continuous Monitoring (vSOC)</option>
+              <option value="physical" data-i18n="contact.f.s7">Physical Security Equipment</option>
+              <option value="training" data-i18n="contact.f.s8">Security Awareness Training</option>
+              <option value="ciso" data-i18n="contact.f.s9">Fractional CISO</option>
+              <option value="other" data-i18n="contact.f.s10">Other / Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label data-i18n="contact.f.message">Tell us about your situation</label>
+            <textarea id="fmessage" rows="4"></textarea>
+          </div>
+          <button class="form-submit" onclick="handleSubmit()" data-i18n="contact.f.submit">Send Message</button>
+          <p class="form-note" data-i18n="contact.f.note">We respond within one business day.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
     <div class="footer-bottom">
       <span class="footer-tagline" data-i18n="footer.tagline">Codeward Security — Where Code Meets Conviction.</span>
       <span data-i18n="footer.bottom">© 2026 Codeward Security. Operating across North America, Europe &amp; Africa.</span>
@@ -791,7 +1004,23 @@ const COPY = {
     "faq.q4.q":"Which regions do you actually operate in?",
     "faq.q4.a":"North America today, with regulatory-ready practices already standing in Europe (DORA, NIS2, GDPR) and Africa (NDPA, POPIA, Kenya's Data Protection Act).",
     "faq.q5.q":"Do you really do physical security too?",
-    "faq.q5.a":"Yes — IP video, access control, and alarm systems for branches and data centers, sold, installed, and kept patched. We treat that hardware the way we treat code: something with firmware that needs maintaining, not a one-time install."
+    "faq.q5.a":"Yes — IP video, access control, and alarm systems for branches and data centers, sold, installed, and kept patched. We treat that hardware the way we treat code: something with firmware that needs maintaining, not a one-time install.",
+    "services.s3.tag":"2.3 — Network, API & Cloud","services.s3.title":"Network, API & Cloud-Native Security","services.s3.body":"Network segmentation, secure remote access, ZTNA, API hardening, and cloud-native infrastructure across AWS, Azure, and GCP.",
+    "services.s8.tag":"2.8 — Training","services.s8.title":"Security Awareness Training","services.s8.body":"Role-based training, phishing simulations, developer security bootcamps, and security champion programs — written by engineers who've seen real exploits.",
+    "cs.eyebrow":"Client Work","cs.h2":"Results, not just reports","cs.sub":"Anonymized snapshots from active engagements. Named references available under NDA.",
+    "cs.c1.label":"FINTECH — WEST AFRICA","cs.c1.title":"Mobile Payment Platform AppSec Pilot","cs.c1.body":"Scoped SAST + manual review of a Series B mobile-money API. Hardcoded credentials, BOLA, and three business-logic flaws identified and fixed before launch.","cs.c1.m1":"14 days to delivery","cs.c1.m2":"6 critical findings fixed",
+    "cs.c2.label":"HEALTHTECH — NORTH AMERICA","cs.c2.title":"DevSecOps Pipeline Integration","cs.c2.body":"Embedded security gates into a healthcare SaaS CI/CD pipeline. HIPAA evidence collection automated; developer MTTR dropped by 60%.","cs.c2.m1":"60% MTTR reduction","cs.c2.m2":"HIPAA audit-ready",
+    "cs.c3.coming":"Coming Soon","cs.c3.label":"YOUR INDUSTRY HERE","cs.c3.title":"First Engagement in Your Vertical","cs.c3.body":"We're building the reference library. If you're an early client, your anonymized results will appear here.",
+    "blog.eyebrow":"Insights","blog.h2":"From the engineering room floor","blog.sub":"Real vulnerability patterns, anonymized. Written by engineers who fixed them, not analysts who catalogued them.",
+    "blog.p1.meta":"APPSEC — COMING SOON","blog.p1.title":"Why Fintech SAST Rules Need Their Own Rule Packs","blog.p1.body":"Generic SAST misses transaction-logic flaws. Here's how we built Semgrep rules tuned to ledger and payment-rail code.",
+    "blog.p2.meta":"DEVSECOPS — COMING SOON","blog.p2.title":"Security Gates That Don't Slow Your Sprint","blog.p2.body":"How to instrument a CI/CD pipeline so security findings arrive as PRs, not blocked deploys.",
+    "blog.p3.meta":"GRC — COMING SOON","blog.p3.title":"DORA in Practice: What ICT Third-Party Providers Actually Need to Do","blog.p3.body":"A technical breakdown of what DORA means for security vendors selling into EU financial entities — including us.",
+    "contact.eyebrow":"Get in Touch","contact.h2":"Ready to ship secure?","contact.body":"Tell us what you're working on. We'll come back with a scoped pilot proposal — no generic sales decks, no obligation.",
+    "contact.email":"hello@codewardsecurity.com","contact.regions":"North America · Europe · Africa",
+    "contact.success":"Message sent — we'll be in touch within one business day.",
+    "contact.f.name":"Full Name","contact.f.company":"Company","contact.f.email":"Work Email","contact.f.service":"What can we help with?",
+    "contact.f.s0":"Select a service...","contact.f.s1":"AppSec & Code Audit","contact.f.s2":"DevSecOps Pipeline Integration","contact.f.s3":"Network & Cloud Security","contact.f.s4":"Red Teaming / VAPT","contact.f.s5":"GRC & Compliance","contact.f.s6":"Continuous Monitoring (vSOC)","contact.f.s7":"Physical Security Equipment","contact.f.s8":"Security Awareness Training","contact.f.s9":"Fractional CISO","contact.f.s10":"Other / Not sure yet",
+    "contact.f.message":"Tell us about your situation","contact.f.submit":"Send Message","contact.f.note":"We respond within one business day."
   },
   fr: {
     "nav.services":"Services","nav.regions":"Régions","nav.why":"Pourquoi nous","nav.contact":"Contact",
@@ -854,7 +1083,23 @@ const COPY = {
     "faq.q4.q":"Dans quelles régions opérez-vous réellement ?",
     "faq.q4.a":"En Amérique du Nord aujourd'hui, avec des pratiques déjà prêtes sur le plan réglementaire en Europe (DORA, NIS2, RGPD) et en Afrique (NDPA, POPIA, loi kényane sur la protection des données).",
     "faq.q5.q":"Faites-vous vraiment aussi de la sécurité physique ?",
-    "faq.q5.a":"Oui — vidéosurveillance IP, contrôle d'accès et systèmes d'alarme pour les agences et centres de données, vendus, installés et maintenus à jour. Nous traitons ce matériel comme nous traitons le code : comme quelque chose dont le firmware doit être maintenu, pas une simple installation ponctuelle."
+    "faq.q5.a":"Oui — vidéosurveillance IP, contrôle d'accès et systèmes d'alarme pour les agences et centres de données, vendus, installés et maintenus à jour. Nous traitons ce matériel comme nous traitons le code : comme quelque chose dont le firmware doit être maintenu, pas une simple installation ponctuelle.",
+    "services.s3.tag":"2.3 — Réseau, API et cloud","services.s3.title":"Sécurité des réseaux, des API et du cloud natif","services.s3.body":"Segmentation réseau, accès distant sécurisé, ZTNA, durcissement des API et infrastructure cloud native sur AWS, Azure et GCP.",
+    "services.s8.tag":"2.8 — Formation","services.s8.title":"Formation à la sensibilisation à la cybersécurité","services.s8.body":"Formations par rôle, simulations de phishing, bootcamps pour développeurs et programmes de champions sécurité — rédigés par des ingénieurs ayant observé de vraies exploitations.",
+    "cs.eyebrow":"Travaux clients","cs.h2":"Des résultats, pas seulement des rapports","cs.sub":"Aperçus anonymisés de missions actives. Références nominatives disponibles sous NDA.",
+    "cs.c1.label":"FINTECH — AFRIQUE DE L'OUEST","cs.c1.title":"Audit pilote AppSec d'une plateforme de paiement mobile","cs.c1.body":"SAST ciblé et revue manuelle d'une API mobile money (Série B). Identifiants codés en dur, BOLA et trois failles de logique métier identifiés et corrigés avant le lancement.","cs.c1.m1":"14 jours de livraison","cs.c1.m2":"6 constats critiques corrigés",
+    "cs.c2.label":"HEALTHTECH — AMÉRIQUE DU NORD","cs.c2.title":"Intégration DevSecOps au pipeline","cs.c2.body":"Contr\u00f4les de s\u00e9curit\u00e9 int\u00e9gr\u00e9s au pipeline CI/CD d'un SaaS de sant\u00e9. Collecte de preuves HIPAA automatis\u00e9e ; MTTR des d\u00e9veloppeurs r\u00e9duit de 60 %.","cs.c2.m1":"Réduction MTTR de 60 %","cs.c2.m2":"Pr\u00eat pour l'audit HIPAA",
+    "cs.c3.coming":"Bient\u00f4t disponible","cs.c3.label":"VOTRE SECTEUR ICI","cs.c3.title":"Premi\u00e8re mission dans votre secteur","cs.c3.body":"Nous construisons la biblioth\u00e8que de r\u00e9f\u00e9rences. Si vous \u00eates un client pr\u00e9coce, vos r\u00e9sultats anonymis\u00e9s appara\u00eetront ici.",
+    "blog.eyebrow":"Publications","blog.h2":"Depuis le terrain de l'ing\u00e9nierie","blog.sub":"De vrais sch\u00e9mas de vuln\u00e9rabilit\u00e9, anonymis\u00e9s. R\u00e9dig\u00e9s par les ing\u00e9nieurs qui les ont corrig\u00e9s, pas par des analystes qui les ont r\u00e9pertori\u00e9s.",
+    "blog.p1.meta":"APPSEC — BIENT\u00d4T DISPONIBLE","blog.p1.title":"Pourquoi les r\u00e8gles SAST fintech ont besoin de leurs propres packs","blog.p1.body":"Le SAST g\u00e9n\u00e9rique passe \u00e0 c\u00f4t\u00e9 des failles de logique transactionnelle. Voici comment nous avons construit des r\u00e8gles Semgrep calibr\u00e9es pour le code de grand livre et de rails de paiement.",
+    "blog.p2.meta":"DEVSECOPS — BIENT\u00d4T DISPONIBLE","blog.p2.title":"Des contr\u00f4les de s\u00e9curit\u00e9 qui ne ralentissent pas votre sprint","blog.p2.body":"Comment instrumenter un pipeline CI/CD pour que les constats de s\u00e9curit\u00e9 arrivent sous forme de PR, et non de d\u00e9ploiements bloqu\u00e9s.",
+    "blog.p3.meta":"GRC — BIENT\u00d4T DISPONIBLE","blog.p3.title":"DORA en pratique : ce que les prestataires TIC tiers doivent vraiment faire","blog.p3.body":"Une analyse technique de ce que DORA implique pour les fournisseurs de s\u00e9curit\u00e9 qui vendent aux entit\u00e9s financi\u00e8res de l'UE — nous y compris.",
+    "contact.eyebrow":"Nous contacter","contact.h2":"Pr\u00eat \u00e0 livrer du code s\u00e9curis\u00e9 ?","contact.body":"Dites-nous sur quoi vous travaillez. Nous vous revenons avec une proposition de projet pilote cibl\u00e9 — aucune pr\u00e9sentation commerciale g\u00e9n\u00e9rique, aucun engagement.",
+    "contact.email":"hello@codewardsecurity.com","contact.regions":"Am\u00e9rique du Nord \u00b7 Europe \u00b7 Afrique",
+    "contact.success":"Message envoy\u00e9 — nous vous r\u00e9pondrons dans un d\u00e9lai d'un jour ouvrable.",
+    "contact.f.name":"Nom complet","contact.f.company":"Entreprise","contact.f.email":"Email professionnel","contact.f.service":"Comment pouvons-nous vous aider ?",
+    "contact.f.s0":"S\u00e9lectionner un service...","contact.f.s1":"AppSec et audit de code","contact.f.s2":"Int\u00e9gration DevSecOps au pipeline","contact.f.s3":"S\u00e9curit\u00e9 r\u00e9seau et cloud","contact.f.s4":"\u00c9quipe rouge / VAPT","contact.f.s5":"GRC et conformit\u00e9","contact.f.s6":"Surveillance continue (vSOC)","contact.f.s7":"\u00c9quipements de s\u00e9curit\u00e9 physique","contact.f.s8":"Formation \u00e0 la sensibilisation","contact.f.s9":"RSSI \u00e0 temps partag\u00e9","contact.f.s10":"Autre / Pas encore s\u00fbr",
+    "contact.f.message":"D\u00e9crivez votre situation","contact.f.submit":"Envoyer le message","contact.f.note":"Nous r\u00e9pondons dans un d\u00e9lai d'un jour ouvrable."
   }
 };
 
@@ -878,6 +1123,15 @@ function applyLang(lang){
 document.querySelectorAll('.lang-toggle button').forEach(function(btn){
   btn.addEventListener('click', function(){ applyLang(btn.getAttribute('data-lang')); });
 });
+
+function handleSubmit(){
+  var name = document.getElementById('fname').value.trim();
+  var email = document.getElementById('femail').value.trim();
+  if(!name || !email){ return; }
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+
 applyLang('en');
 </script>
 </body>
