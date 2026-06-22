@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Codeward Security — Where Code Meets Conviction</title>
 <meta name="description" content="Codeward Security is a developer-first cybersecurity firm for fintech, neo-banks, and financial institutions — securing code, pipelines, and physical infrastructure across North America, Europe & Africa.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23a6192e'/%3E%3Ctext x='32' y='44' font-family='monospace' font-size='34' font-weight='700' fill='white' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23be1f33'/%3E%3Ctext x='32' y='44' font-family='monospace' font-size='34' font-weight='700' fill='white' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Codeward Security — Where Code Meets Conviction">
 <meta property="og:description" content="A developer-first cybersecurity firm for fintech, neo-banks, and financial institutions across North America, Europe & Africa.">
@@ -25,11 +25,12 @@
     --carbon:#1f1f26;
     --paper:#f7f6f3;
     --paper-dim:#eeece7;
-    --red:#a6192e;
-    --red-bright:#c5273e;
-    --silver:#9a9a9e;
-    --silver-bright:#c7c7cb;
+    --red:#be1f33;
+    --red-bright:#d63348;
+    --silver:#9e9b98;
+    --silver-bright:#c8c5c2;
     --muted:#5b5b60;
+    --steel:#1a2d42;
     --ink-line:#34343d;
     --font-display:'Fraunces', Georgia, serif;
     --font-mono:'JetBrains Mono', 'SF Mono', Consolas, monospace;
@@ -182,6 +183,10 @@
     margin:0 0 36px;
   }
   .cta-row{ display:flex; flex-wrap:wrap; gap:14px; }
+  @media(max-width:520px){
+    .cta-row{ flex-direction:column; }
+    .cta-row .btn{ width:100%; text-align:center; }
+  }
   .btn{
     font-family:var(--font-mono);
     font-size:13px; font-weight:600; letter-spacing:0.03em;
@@ -226,12 +231,12 @@
   .term-line{ display:flex; gap:14px; white-space:pre; }
   .term-no{ color:#4a4a52; width:18px; text-align:right; flex-shrink:0; user-select:none; }
   .term-code{ color:#c9c9ce; }
-  .term-line.minus .term-code{ color:#e2a4ad; background:rgba(166,25,46,0.16); padding:1px 4px; border-radius:2px; }
+  .term-line.minus .term-code{ color:#eeaab5; background:rgba(190,31,51,0.18); padding:1px 4px; border-radius:2px; }
   .term-line.minus .term-no{ color:var(--red-bright); }
   .term-line.minus .sigil{ color:var(--red-bright); margin-right:2px; }
-  .term-line.plus .term-code{ color:#e7e7ea; background:rgba(154,154,158,0.14); padding:1px 4px; border-radius:2px; }
-  .term-line.plus .term-no{ color:var(--silver-bright); }
-  .term-line.plus .sigil{ color:var(--silver-bright); margin-right:2px; }
+  .term-line.plus .term-code{ color:#e7e7ea; background:rgba(26,45,66,0.55); padding:1px 4px; border-radius:2px; }
+  .term-line.plus .term-no{ color:#8fafc8; }
+  .term-line.plus .sigil{ color:#8fafc8; margin-right:2px; }
   .cursor{
     display:inline-block; width:7px; height:14px;
     background:var(--silver-bright);
@@ -302,8 +307,8 @@
     border-radius:8px;
     overflow:hidden;
   }
-  @media (min-width:680px){ .service-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media (min-width:1020px){ .service-grid{ grid-template-columns:repeat(3,1fr); } }
+  @media (min-width:600px){ .service-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (min-width:1020px){ .service-grid{ grid-template-columns:repeat(4,1fr); } }
   .service-card{
     background:var(--carbon);
     padding:24px 24px 26px;
@@ -317,69 +322,74 @@
     color:#fff; margin:0 0 9px; line-height:1.3;
   }
   .service-card p{ font-size:13.5px; line-height:1.55; color:#aeaeb4; margin:0; }
-  .service-card.flagship{ background:#241317; }
+  .service-card.flagship{ background:#1a2d42; }
   .service-card.flagship .service-tag{ color:var(--silver-bright); }
 
   /* ---------- regions ---------- */
-  .regions{ background:var(--paper); }
+  .regions{ background:var(--ink); }
   .region-grid{
     display:grid; grid-template-columns:1fr; gap:1px;
-    background:#e3e1da; border:1px solid #e3e1da; border-radius:8px; overflow:hidden;
+    background:var(--ink-line); border:1px solid var(--ink-line); border-radius:8px; overflow:hidden;
   }
   @media (min-width:760px){ .region-grid{ grid-template-columns:repeat(3,1fr); } }
-  .region-card{ background:#fff; padding:28px 24px; }
+  .region-card{ background:var(--carbon); padding:28px 24px; }
   .region-card h3{
     font-family:var(--font-display); font-weight:600; font-size:19px;
-    margin:0 0 12px;
+    color:#fff; margin:0 0 12px;
   }
-  .region-card p{ font-size:14px; line-height:1.6; color:var(--muted); margin:0 0 16px; }
+  .region-card p{ font-size:14px; line-height:1.6; color:#aeaeb4; margin:0 0 16px; }
   .chip-row{ display:flex; flex-wrap:wrap; gap:7px; }
   .chip{
     font-family:var(--font-mono); font-size:11px; font-weight:600;
-    color:var(--red); background:#fbe9ec;
+    color:var(--red-bright); background:rgba(190,31,51,0.18);
     border-radius:3px; padding:4px 9px; letter-spacing:0.02em;
   }
 
   /* ---------- how it works ---------- */
-  .process{ background:var(--ink); }
+  .process{ background:var(--paper); }
   .process-grid{
-    display:grid; grid-template-columns:1fr; gap:1px;
-    background:var(--ink-line); border:1px solid var(--ink-line); border-radius:8px; overflow:hidden;
+    display:grid; grid-template-columns:1fr; gap:20px;
   }
   @media (min-width:760px){ .process-grid{ grid-template-columns:repeat(2,1fr); } }
   @media (min-width:1100px){ .process-grid{ grid-template-columns:repeat(4,1fr); } }
-  .process-step{ background:var(--carbon); padding:26px 22px 28px; }
+  .process-step{ background:#fff; border:1px solid #e3e1da; border-radius:8px; padding:28px 24px 30px; }
   .process-num{
-    font-family:var(--font-mono); font-size:13px; font-weight:700;
-    color:var(--red-bright); letter-spacing:0.06em; margin:0 0 16px;
+    font-family:var(--font-mono); font-size:32px; font-weight:700;
+    color:var(--red); letter-spacing:-0.02em; margin:0 0 16px; line-height:1;
   }
   .process-step h3{
     font-family:var(--font-display); font-weight:600; font-size:18px;
-    color:#fff; margin:0 0 9px; line-height:1.3;
+    color:var(--ink); margin:0 0 9px; line-height:1.3;
   }
-  .process-step p{ font-size:13.5px; line-height:1.6; color:#aeaeb4; margin:0; }
+  .process-step p{ font-size:13.5px; line-height:1.6; color:var(--muted); margin:0; }
 
   /* ---------- industries ---------- */
-  .industries{ background:var(--ink); padding:64px 0; }
+  .industries{ background:var(--paper); padding:96px 0; }
   .industry-grid{
-    display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
-    background:var(--ink-line); border:1px solid var(--ink-line); border-radius:8px; overflow:hidden;
+    display:grid; grid-template-columns:repeat(2,1fr); gap:16px;
   }
   @media (min-width:760px){ .industry-grid{ grid-template-columns:repeat(3,1fr); } }
   @media (min-width:1060px){ .industry-grid{ grid-template-columns:repeat(5,1fr); } }
   .industry-card{
-    background:var(--carbon); padding:22px 20px 24px;
+    background:#fff; border:1px solid #e3e1da; border-radius:8px;
+    padding:22px 20px 24px;
     display:flex; flex-direction:column; gap:8px;
   }
+  .industry-card.flagship{
+    background:var(--steel); border-color:#253d56;
+  }
+  .industry-card.flagship .industry-icon{ color:var(--silver-bright); }
+  .industry-card.flagship h4{ color:#fff; }
+  .industry-card.flagship p{ color:#8fafc8; }
   .industry-icon{
     font-family:var(--font-mono); font-size:11px; font-weight:600;
-    color:var(--red-bright); letter-spacing:0.08em;
+    color:var(--red); letter-spacing:0.08em;
   }
   .industry-card h4{
     font-family:var(--font-display); font-weight:600; font-size:16px;
-    color:#fff; margin:0; line-height:1.3;
+    color:var(--ink); margin:0; line-height:1.3;
   }
-  .industry-card p{ font-size:12.5px; line-height:1.5; color:#aeaeb4; margin:0; }
+  .industry-card p{ font-size:12.5px; line-height:1.5; color:var(--muted); margin:0; }
 
   /* ---------- faq ---------- */
   .faq{ background:var(--paper); }
@@ -420,33 +430,30 @@
   }
 
   /* ---------- case studies ---------- */
-  .case-studies{ background:var(--paper-dim); }
+  .case-studies{ background:var(--ink); }
   .cs-grid{
     display:grid; grid-template-columns:1fr; gap:20px;
   }
   @media(min-width:760px){ .cs-grid{ grid-template-columns:repeat(3,1fr); } }
   .cs-card{
-    background:#fff; border:1px solid #e3e1da; border-radius:8px;
-    padding:26px 24px 28px; position:relative; overflow:hidden;
-  }
-  .cs-card::before{
-    content:""; position:absolute; top:0; left:0;
-    width:3px; height:100%; background:var(--red);
+    background:var(--carbon); border:1px solid var(--ink-line);
+    border-radius:8px; padding:26px 24px 28px;
+    border-top:3px solid var(--red);
   }
   .cs-label{
     font-family:var(--font-mono); font-size:11px; font-weight:600;
     letter-spacing:0.08em; color:var(--silver); margin:0 0 12px;
   }
-  .cs-card h3{ font-family:var(--font-display); font-weight:600; font-size:18px; margin:0 0 10px; }
-  .cs-card p{ font-size:14px; line-height:1.6; color:var(--muted); margin:0 0 16px; }
+  .cs-card h3{ font-family:var(--font-display); font-weight:600; font-size:18px; color:#fff; margin:0 0 10px; }
+  .cs-card p{ font-size:14px; line-height:1.6; color:#aeaeb4; margin:0 0 16px; }
   .cs-metrics{ display:flex; flex-wrap:wrap; gap:10px; }
   .cs-metric{
     font-family:var(--font-mono); font-size:12px; font-weight:600;
-    background:#fbe9ec; color:var(--red); border-radius:3px; padding:5px 10px;
+    background:rgba(190,31,51,0.18); color:var(--red-bright); border-radius:3px; padding:5px 10px;
   }
   .cs-coming{
     font-family:var(--font-mono); font-size:11.5px; color:var(--silver-bright);
-    background:var(--ink); border-radius:3px; padding:4px 10px;
+    background:rgba(255,255,255,0.08); border-radius:3px; padding:4px 10px;
     display:inline-block; margin-bottom:12px;
   }
 
@@ -465,49 +472,54 @@
   /* ---------- contact form ---------- */
   .contact-section{ background:var(--paper); }
   .contact-grid{
-    display:grid; grid-template-columns:1fr; gap:48px; align-items:start;
+    display:grid; grid-template-columns:1fr; gap:56px; align-items:start;
   }
-  @media(min-width:900px){ .contact-grid{ grid-template-columns:1fr 1.3fr; } }
+  @media(min-width:900px){ .contact-grid{ grid-template-columns:1fr 1.4fr; gap:80px; } }
   .contact-copy h2{ margin-bottom:14px; }
-  .contact-copy p{ font-size:15px; line-height:1.65; color:var(--muted); margin:0 0 24px; }
+  .contact-copy p{ font-size:15px; line-height:1.65; color:var(--muted); margin:0 0 28px; }
   .contact-detail{
     font-family:var(--font-mono); font-size:13px; color:var(--muted);
-    display:flex; align-items:center; gap:10px; margin-bottom:12px;
+    display:flex; align-items:center; gap:10px; margin-bottom:14px;
   }
   .contact-detail span{ color:var(--red-bright); }
   .form-card{
-    background:#fff; border:1px solid #e3e1da; border-radius:8px; padding:32px 28px;
+    background:#fff; border:1px solid #e3e1da; border-radius:8px; padding:36px 32px;
+    box-shadow:0 4px 24px rgba(0,0,0,0.05);
   }
-  .form-row{ margin-bottom:18px; }
+  .form-row{ margin-bottom:20px; }
   .form-row label{
     display:block; font-family:var(--font-mono); font-size:12px; font-weight:600;
-    letter-spacing:0.04em; color:var(--ink); margin-bottom:7px;
+    letter-spacing:0.04em; color:var(--ink); margin-bottom:8px;
   }
   .form-row input, .form-row select, .form-row textarea{
-    width:100%; font-family:var(--font-body); font-size:14.5px;
+    width:100%; font-family:var(--font-body); font-size:15px;
     color:var(--ink); background:#fff;
-    border:1px solid #d4d4d4; border-radius:4px;
-    padding:11px 14px; outline:none;
+    border:1.5px solid #d4d4d4; border-radius:4px;
+    padding:12px 14px; outline:none;
     transition:border-color .15s ease;
     box-sizing:border-box;
   }
-  .form-row textarea{ resize:vertical; min-height:100px; }
+  .form-row input::placeholder, .form-row textarea::placeholder{
+    color:#b0b0b5;
+  }
+  .form-row textarea{ resize:vertical; min-height:110px; }
   .form-row input:focus, .form-row select:focus, .form-row textarea:focus{
     border-color:var(--red);
   }
   .form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
   @media(max-width:520px){ .form-grid{ grid-template-columns:1fr; } }
   .form-submit{
-    width:100%; font-family:var(--font-mono); font-size:13.5px; font-weight:700;
+    width:100%; font-family:var(--font-mono); font-size:14px; font-weight:700;
     letter-spacing:0.04em; background:var(--red); color:#fff;
-    border:none; border-radius:3px; padding:15px;
+    border:none; border-radius:3px; padding:16px;
     cursor:pointer; transition:background .15s ease;
+    margin-top:4px;
   }
   .form-submit:hover{ background:var(--red-bright); }
   .form-note{ font-size:12.5px; color:var(--silver); margin-top:12px; text-align:center; }
   .form-success{
     display:none; background:#f0fdf4; border:1px solid #bbf7d0;
-    border-radius:6px; padding:20px; text-align:center;
+    border-radius:6px; padding:24px; text-align:center;
     font-family:var(--font-mono); font-size:13px; color:#166534;
   }
 
@@ -540,8 +552,9 @@
     <a href="#top" class="brand"><span class="brand-mark"></span>CODEWARD SECURITY</a>
     <ul class="nav-links">
       <li><a href="#services" data-i18n="nav.services">Services</a></li>
-      <li><a href="#regions" data-i18n="nav.regions">Regions</a></li>
-      <li><a href="#why" data-i18n="nav.why">Why Us</a></li>
+      <li><a href="#industries" data-i18n="nav.industries">Industries</a></li>
+      <li><a href="#work" data-i18n="nav.work">Work</a></li>
+      <li><a href="#insights" data-i18n="nav.insights">Insights</a></li>
       <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <div class="lang-toggle" role="group" aria-label="Language">
@@ -668,7 +681,7 @@
   </div>
 </section>
 
-<section class="process on-dark" id="how">
+<section class="process" id="how">
   <div class="wrap">
     <div class="section-head">
       <p class="section-eyebrow" data-i18n="process.eyebrow">How We Work</p>
@@ -700,7 +713,7 @@
   </div>
 </section>
 
-<section class="regions" id="regions">
+<section class="regions on-dark" id="regions">
   <div class="wrap">
     <div class="section-head reveal">
       <p class="section-eyebrow" data-i18n="regions.eyebrow">Global Footprint</p>
@@ -733,7 +746,7 @@
   </div>
 </section>
 
-<section class="industries on-dark" id="industries">
+<section class="industries" id="industries">
   <div class="wrap">
     <div class="section-head">
       <p class="section-eyebrow" data-i18n="industries.eyebrow">Industries Served</p>
@@ -741,7 +754,7 @@
       <p class="section-sub" data-i18n="industries.sub">The same engineering-embedded model, applied wherever organizations ship production software and handle sensitive data.</p>
     </div>
     <div class="industry-grid">
-      <div class="industry-card">
+      <div class="industry-card flagship">
         <span class="industry-icon" data-i18n="industries.i1.tag">Flagship</span>
         <h4 data-i18n="industries.i1.title">Financial Services & Fintech</h4>
         <p data-i18n="industries.i1.body">Neo-banks, DeFi, commercial banks, payment processors, and financial regulators.</p>
@@ -944,10 +957,10 @@
 <script>
 const COPY = {
   en: {
-    "nav.services":"Services","nav.regions":"Regions","nav.why":"Why Us","nav.contact":"Contact",
+    "nav.services":"Services","nav.industries":"Industries","nav.work":"Work","nav.insights":"Insights","nav.contact":"Contact",
     "hero.eyebrow":"Security built by developers, for developers",
     "hero.h1":"Where Code<br>Meets <em>Conviction.</em>",
-    "hero.lede":"We don't hand back a findings PDF. We sit inside the pull request, the pipeline, and the architecture review — fixing security defects at the source for fintech platforms, telecom carriers, healthcare systems, e-commerce companies, and the regulators that oversee them.",
+    "hero.lede":"We don't hand back a findings PDF. We sit inside the pull request, the pipeline, and the architecture review — fixing security defects at the source, for every regulated industry we serve.",
     "hero.cta1":"Book a Pilot Review","hero.cta2":"See the Services",
     "hero.term.comment1":"# hardcoded",
     "hero.term.caption":"A real fix, not just a finding.",
@@ -1023,10 +1036,10 @@ const COPY = {
     "contact.f.message":"Tell us about your situation","contact.f.submit":"Send Message","contact.f.note":"We respond within one business day."
   },
   fr: {
-    "nav.services":"Services","nav.regions":"Régions","nav.why":"Pourquoi nous","nav.contact":"Contact",
+    "nav.services":"Services","nav.industries":"Secteurs","nav.work":"Travaux","nav.insights":"Publications","nav.contact":"Contact",
     "hero.eyebrow":"Une sécurité conçue par des développeurs, pour des développeurs",
     "hero.h1":"Où le code<br>rencontre la <em>conviction.</em>",
-    "hero.lede":"Nous ne remettons pas un simple rapport de constats. Nous intervenons directement dans la pull request, le pipeline et la revue d'architecture — en corrigeant les failles à la source pour les plateformes fintech, les opérateurs télécom, les systèmes de santé, les entreprises e-commerce et les régulateurs qui les supervisent.",
+    "hero.lede":"Nous ne remettons pas un simple rapport de constats. Nous intervenons directement dans la pull request, le pipeline et la revue d'architecture — en corrigeant les failles à la source, dans chaque secteur réglementé que nous servons.",
     "hero.cta1":"Réserver un audit pilote","hero.cta2":"Voir les services",
     "hero.term.comment1":"# secret en dur",
     "hero.term.caption":"Un vrai correctif, pas seulement un constat.",
